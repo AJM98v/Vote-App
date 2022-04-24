@@ -16,7 +16,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
-<body class="font-sans text-gray-900 text-sm">
+<body class="font-sans text-gray-900 text-sm bg-gray-background">
 <header class="flex items-center justify-between px-8 py-4">
     <a href="#" class="font-bold">logo</a>
     <div class="flex justify-between items-center">
@@ -27,26 +27,61 @@
                         @csrf
 
                         <a href="{{route('logout')}}"
-                                         onclick="event.preventDefault();
+                           onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                             {{ __('Log Out') }}
                         </a>
-                    </form>
-                @else
-                    <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}"
-                           class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                    @endif
+                        @else
+                            <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log
+                                in</a>
+
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}"
+                                   class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                @endif
                 @endauth
             </div>
         @endif
         <a href="#">
-            <img src="/Image/icons8-circled-user-male-skin-type-6-80.png" alt="avatar" class="w-10 h-10">
+            <img src="{{asset('Image/icons8-circled-user-male-skin-type-6-80.png')}}" alt="avatar" class="w-10 h-10">
         </a>
     </div>
 
 </header>
+<main class="mx-auto flex container max-w-5xl">
+    <div class="max-w-xs mr-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non nulla quae quisquam
+        sapiente velit? Accusantium
+        atque consequatur esse eum hic id iure molestias nulla ratione tenetur? Aliquam ducimus facere molestias nam
+        nostrum numquam rerum sit ullam voluptatum. Cum delectus, dolor iure minima neque possimus provident repudiandae
+        voluptates. Consequatur dignissimos dolore minus, nam nisi omnis perspiciatis provident quibusdam. Ab aliquid
+        aperiam architecto, asperiores consequatur cum, dolore dolores esse et ratione recusandae, voluptatem. Aliquam
+        assumenda autem beatae delectus eos et fugit harum hic magni minima nisi omnis optio, quo sunt veniam. A ab amet
+        assumenda autem doloremque modi natus sed sit ullam?
+    </div>
+    <div class="max-w-2xl">
+        <nav class="flex justify-between items-center text-xs">
+            <ul class="uppercase font-semibold space-x-10 border-b-4 pb-3 flex">
+                <li><a href="" class="border-b-blue border-b-4 pb-3">All Ideas (87)</a></li>
+                <li><a href=""
+                       class="text-gray-400 transition duration-200 ease-in border-b-4 pb-3 hover:border-b-blue hover:text-black">Considering
+                        (6)</a></li>
+                <li><a href=""
+                       class="text-gray-400 transition duration-200 ease-in border-b-4 pb-3 hover:border-b-blue hover:text-black">In
+                        Process (1)</a></li>
+
+            </ul>
+            <ul class="uppercase font-semibold space-x-10 border-b-4 pb-3 flex ml-20">
+                <li><a href=""
+                       class="text-gray-400 transition duration-200 ease-in border-b-4 pb-3 hover:border-b-blue hover:text-black">implemented (10)</a></li>
+                <li><a href=""
+                       class="text-gray-400 transition duration-200 ease-in border-b-4 pb-3 hover:border-b-blue hover:text-black">closed
+                        (55)</a></li>
+
+            </ul>
+
+        </nav>
+    </div>
+</main>
 </body>
 </html>
