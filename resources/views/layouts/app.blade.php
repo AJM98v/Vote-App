@@ -81,6 +81,10 @@
             </ul>
 
         </nav>
+
+        <div class="mt-6">
+            {{ $slot }}
+        </div>
     </div>
 </main>
 </body>
