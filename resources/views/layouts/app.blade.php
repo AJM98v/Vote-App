@@ -51,7 +51,7 @@
 </header>
 <main class="mx-auto flex container max-w-6xl">
     <div class="max-w-xs mr-10">
-        <div class="bg-white border-2 border-blue rounded-xl mt-16 border-opacity-60">
+        <div class="bg-white border-2 border-blue rounded-xl mt-16 border-opacity-40">
             <div class="text-center px-6 py-2 pt-6">
                 <h3 class="font-semibold text-base">Add a Idea</h3>
                 <p class="text-xs mt-4 ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis,

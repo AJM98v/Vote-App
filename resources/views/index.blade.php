@@ -50,20 +50,16 @@
                 </div>
 
             </div>
-            <div class="flex px-2 py-6 ">
-                <a href="#" class="flex-none">
+            <div class="flex flex-1 px-2 py-6 ">
+                <a href="#" class="flex-none h-fit">
                     <img src="https://source.unsplash.com/200*200/?face&crop=face&v=1" alt="avatar"
                          class="w-14 h-14 rounded-2xl">
                 </a>
-                <div class="mx-4">
+                <div class="mx-4 w-full">
                     <h4 class="text-xl font-semibold ">
                         <a href="#" class="hover:underline">Random title Goes here</a>
                     </h4>
-                    <div class="text-gray-600 mt-4 line-clamp-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta,
-                        dolores dolorum ea fugit neque nulla qui quis sunt! Ab adipisci assumenda at culpa dolorum
-                        ducimus ea eos expedita explicabo harum labore laboriosam magni maiores mollitia neque non,
-                        officia possimus quia quo quod recusandae repudiandae sapiente, suscipit tempore totam, veniam
-                        vero.
+                    <div class="text-gray-600 mt-4 line-clamp-3">Lorem ipsum
                     </div>
                     <div class="flex justify-between items-center mt-5">
                         <div class="flex items-center text-xs text-gray-400 font-semibold space-x-2">
