@@ -77,13 +77,17 @@
                                 Open
                             </div>
 
-                            <button class="relative bg-gray-200 hover:bg-gray-300 rounded-full h-7 px-2 transition duration-300 ease-in ">
+                            <button x-data="{
+                                   isOpen : false
+                            }" @click="isOpen = !isOpen" @click.outside="isOpen = false" @keydown.esc.window="isOpen =false" class="relative bg-gray-200 hover:bg-gray-300 rounded-full h-7 px-2 transition duration-300 ease-in ">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24"
                                      stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                           d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"/>
                                 </svg>
-                                <ul class="absolute p-0 w-44 font-semibold text-sm shadow-lg  bg-white overflow-hidden text-left left-5 rounded-xl ">
+                                <ul
+                                    x-show="isOpen" x-transition.origin.top.left.duration.200ms x-cloak
+                                    class="absolute p-0 w-44 font-semibold text-sm shadow-lg  bg-white overflow-hidden text-left left-5 rounded-xl ">
                                         <li><a href="#" class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Mark As Spam</a></li>
                                         <li><a href="#" class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Delete Post</a></li>
                                 </ul>

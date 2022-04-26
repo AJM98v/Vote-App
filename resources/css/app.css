@@ -2,4 +2,8 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+[x-cloak] {
+    display: none; !important;
+}
+
 
