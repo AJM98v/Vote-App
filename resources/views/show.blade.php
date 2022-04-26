@@ -20,7 +20,8 @@
                 <h4 class="text-xl font-semibold ">
                     <a href="#" class="hover:underline">Random title Goes here</a>
                 </h4>
-                <div class="text-gray-600 mt-4 line-clamp-3">Lorem ipsum
+                <div class="text-gray-600 mt-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
+                    corporis, facere ipsum nam odio similique suscipit. Hic nobis praesentium quasi?
                 </div>
                 <div class="flex justify-between items-center mt-5">
                     <div class="flex items-center text-xs text-gray-400 font-semibold space-x-2">
@@ -80,15 +81,16 @@
             <button
                 class="flex items-center py-3 px-6 justify-center w-32 h-9 text-xs bg-gray-200 font-semibold rounded-xl border transition duration-200 ease-in border-gray-200 hover:border-gray-400">
                 <span class="mr-2">Set Status</span>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                     stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
                 </svg>
 
             </button>
 
         </div>
         <div class="flex justify-center items-center space-x-3">
-            <div class="bg-white font-semibold text-center rounded-xl px-3 py-2 shadow drop-shadow">
+            <div class="bg-white font-semibold text-center rounded-xl px-2 py-2 shadow drop-shadow">
                 <div class="text-xl leading-snug text-xs uppercase">12</div>
                 <div class="text-gray-400 leading-none text-xs uppercase">Votes</div>
             </div>
@@ -99,7 +101,219 @@
 
         </div>
 
-    </div>
+    </div> <!-- end button-container-->
+
+
+    <div
+        class="comments space-y-6 ml-20 my-8 relative before:content-[''] before:absolute before:-left-10 before:top-2 before:w-0.5 before:h-[90%] before:bg-gray-500 before:opacity-70 before:block ">
+        <div
+            class="comment mt-5 bg-white rounded-xl relative flex before:content-[''] before:absolute before:-left-10 before:top-[50%] before:translate-y-[-50%] before:w-10 before:h-0.5 before:bg-gray-500 before:opacity-70 before:block ">
+            <div class="flex flex-1 px-4 py-6 ">
+                <a href="#" class="flex-none h-fit">
+                    <img src="https://source.unsplash.com/200*200/?face&crop=face&v=1" alt="avatar"
+                         class="w-14 h-14 rounded-2xl">
+                </a>
+                <div class="mx-4 w-full">
+                    {{--                    <h4 class="text-xl font-semibold ">--}}
+                    {{--                        <a href="#" class="hover:underline">Random title Goes here</a>--}}
+                    {{--                    </h4>--}}
+                    <div class="text-gray-600 mt-4 line-clamp-3">Lorem ipsum
+                    </div>
+                    <div class="flex justify-between items-center mt-5">
+                        <div class="flex items-center text-xs text-gray-400 font-semibold space-x-2">
+                            <div class="font-bold text-gray-900">Abolfazl Jafari</div>
+                            <div>&bull;</div>
+                            <div>10 hours ago</div>
+
+
+                        </div>
+                        <div class="flex space-x-2 items-center">
+
+                            <button
+                                class="relative bg-gray-200 hover:bg-gray-300 rounded-full h-7 px-2 transition duration-300 ease-in ">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" fill="none"
+                                     viewBox="0 0 24 24"
+                                     stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                          d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"/>
+                                </svg>
+                                <ul class="hidden absolute p-0 w-44 font-semibold text-sm shadow-lg  bg-white overflow-hidden text-left left-5 rounded-xl ">
+                                    <li><a href="#"
+                                           class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Mark
+                                            As Spam</a></li>
+                                    <li><a href="#"
+                                           class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Delete
+                                            Post</a></li>
+                                </ul>
+                            </button>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div> <!--end comment-container-->
+        <div
+            class="comment isAdmin mt-5 bg-white rounded-xl flex shadow-md before:absolute relative before:content-['']  before:-left-14 before:translate-y-[-50%] before:top-[50%] before:w-8 before:rounded-full before:h-8 before:bg-purple before:border-4 before:border-white before:block">
+            <div class="flex flex-1 px-4 py-6 ">
+                <div class="flex-none h-fit">
+                    <a href="#" class="">
+                        <img src="https://source.unsplash.com/200*200/?face&crop=face&v=2" alt="avatar"
+                             class="w-14 h-14 rounded-2xl">
+                    </a>
+                    <h4 class="uppercase text-blue text-xxs text-center font-bold mt-1">Admin</h4>
+                </div>
+
+
+                <div class="mx-4 w-full">
+                    <h4 class="text-xl font-semibold ">
+                        <a href="#" class="hover:underline">Random title Goes here</a>
+                    </h4>
+                    <div class="text-gray-600 mt-4 line-clamp-3">Lorem ipsum
+                    </div>
+                    <div class="flex justify-between items-center mt-5">
+                        <div class="flex items-center text-xs text-gray-400 font-semibold space-x-2">
+                            <div class="font-bold text-blue ">Abolfazl Jafari</div>
+                            <div>&bull;</div>
+                            <div>10 hours ago</div>
+
+
+                        </div>
+                        <div class="flex space-x-2 items-center">
+
+                            <button
+                                class="relative bg-gray-200 hover:bg-gray-300 rounded-full h-7 px-2 transition duration-300 ease-in ">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" fill="none"
+                                     viewBox="0 0 24 24"
+                                     stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                          d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"/>
+                                </svg>
+                                <ul class="hidden absolute p-0 w-44 font-semibold text-sm shadow-lg  bg-white overflow-hidden text-left left-5 rounded-xl ">
+                                    <li><a href="#"
+                                           class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Mark
+                                            As Spam</a></li>
+                                    <li><a href="#"
+                                           class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Delete
+                                            Post</a></li>
+                                </ul>
+                            </button>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div> <!--end admin-comment-container-->
+        <div
+            class="comment mt-5 bg-white rounded-xl  flex">
+            <div class="flex flex-1 px-4 py-6 ">
+                <a href="#" class="flex-none h-fit">
+                    <img src="https://source.unsplash.com/200*200/?face&crop=face&v=1" alt="avatar"
+                         class="w-14 h-14 rounded-2xl">
+                </a>
+                <div class="mx-4 w-full">
+                    {{--                    <h4 class="text-xl font-semibold ">--}}
+                    {{--                        <a href="#" class="hover:underline">Random title Goes here</a>--}}
+                    {{--                    </h4>--}}
+                    <div class="text-gray-600 mt-4 line-clamp-3">Lorem ipsum
+                    </div>
+                    <div class="flex justify-between items-center mt-5">
+                        <div class="flex items-center text-xs text-gray-400 font-semibold space-x-2">
+                            <div class="font-bold text-gray-900">Abolfazl Jafari</div>
+                            <div>&bull;</div>
+                            <div>10 hours ago</div>
+
+
+                        </div>
+                        <div class="flex space-x-2 items-center">
+
+                            <button
+                                class="relative bg-gray-200 hover:bg-gray-300 rounded-full h-7 px-2 transition duration-300 ease-in ">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" fill="none"
+                                     viewBox="0 0 24 24"
+                                     stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                          d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"/>
+                                </svg>
+                                <ul class="hidden absolute p-0 w-44 font-semibold text-sm shadow-lg  bg-white overflow-hidden text-left left-5 rounded-xl ">
+                                    <li><a href="#"
+                                           class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Mark
+                                            As Spam</a></li>
+                                    <li><a href="#"
+                                           class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Delete
+                                            Post</a></li>
+                                </ul>
+                            </button>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div> <!--end comment-container-->
+        <div
+            class="comment mt-5 bg-white rounded-xl  flex relative">
+            <div class="flex flex-1 px-4 py-6 ">
+                <a href="#" class="flex-none h-fit">
+                    <img src="https://source.unsplash.com/200*200/?face&crop=face&v=1" alt="avatar"
+                         class="w-14 h-14 rounded-2xl">
+                </a>
+                <div class="mx-4 w-full">
+                    {{--                    <h4 class="text-xl font-semibold ">--}}
+                    {{--                        <a href="#" class="hover:underline">Random title Goes here</a>--}}
+                    {{--                    </h4>--}}
+                    <div class="text-gray-600 mt-4 line-clamp-3">Lorem ipsum
+                    </div>
+                    <div class="flex justify-between items-center mt-5">
+                        <div class="flex items-center text-xs text-gray-400 font-semibold space-x-2">
+                            <div class="font-bold text-gray-900">Abolfazl Jafari</div>
+                            <div>&bull;</div>
+                            <div>10 hours ago</div>
+
+
+                        </div>
+                        <div class="flex space-x-2 items-center">
+
+                            <button
+                                class="relative bg-gray-200 hover:bg-gray-300 rounded-full h-7 px-2 transition duration-300 ease-in ">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" fill="none"
+                                     viewBox="0 0 24 24"
+                                     stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                          d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"/>
+                                </svg>
+                                <ul class="hidden absolute p-0 w-44 font-semibold text-sm shadow-lg  bg-white overflow-hidden text-left left-5 rounded-xl ">
+                                    <li><a href="#"
+                                           class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Mark
+                                            As Spam</a></li>
+                                    <li><a href="#"
+                                           class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Delete
+                                            Post</a></li>
+                                </ul>
+                            </button>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div> <!--end comment-container-->
+
+
+    </div> <!-- end comments-container-->
 
 
 </x-app-layout>
