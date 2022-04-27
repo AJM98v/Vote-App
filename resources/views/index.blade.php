@@ -84,8 +84,9 @@
                                     <div class="font-bold uppercase text-gray-600 ">Votes</div>
                                 </div>
                                 <button
-                                    class="bg-gray-500 px-3 py-2 h-10 rounded-2xl  uppercase hover:bg-gray-600 text-white transition duration-300 ease-in hover:border-gray-300 border -mx-3 font-bold ">
-                                    Vote
+                                    class="px-3 py-2 h-10 rounded-2xl  uppercase hover:bg-gray-600 transition duration-300 ease-in hover:border-gray-300 border hover:text-white -mx-3 font-bold bg-gray-400 ">
+
+                                Vote
                                 </button>
                             </div>
                             <div class="flex space-x-2 items-center">
