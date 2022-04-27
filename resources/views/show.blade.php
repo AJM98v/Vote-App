@@ -79,11 +79,11 @@
             <div class="relative"
                  x-data="{
                          isOpen : false
-                        }" @click="isOpen = !isOpen" @click.outside="isOpen = false" @keydown.esc.window="isOpen =false"
-            >
+                        }"  @keydown.esc.window="isOpen =false"
+                        @click.outside="isOpen = false">
                 <button
-                    class=" flex items-center rounded-xl bg-blue hover:bg-blue-hover px-6 py-3 text-white text-xs h-9 w-32 justify-center transition duration-200 ease-in font-semibold"
-                >
+                    @click="isOpen = !isOpen"
+                    class=" flex items-center rounded-xl bg-blue hover:bg-blue-hover px-6 py-3 text-white text-xs h-9 w-32 justify-center transition duration-200 ease-in font-semibold">
                     <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-4 w-4 text-gray-200" fill="none"
                          viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -123,8 +123,9 @@
                  x-data="{
                       isOpen : false
                         }"
-                 @click="isOpen = !isOpen" @click.outside="isOpen = false" @keydown.esc.window="isOpen =false">
+                 @keydown.esc.window="isOpen =false">
                 <button
+                    @click="isOpen = !isOpen"
                     class="flex items-center py-3 px-6 justify-center w-32 h-9 text-xs bg-gray-200 font-semibold rounded-xl border transition duration-200 ease-in border-gray-200 hover:border-gray-400">
                     <span class="mr-2">Set Status</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
@@ -135,9 +136,8 @@
                 </button>
                 <div
                     class="absolute mt-2 left-0 drop-shadow-lg rounded-xl w-[19rem] z-20 bg-white font-semibold text-left "
-                    x-show="isOpen" x-transition.origin.top.duration.200ms x-cloak
-                >
-                    <form action="#" method="post" class="space-y-4 p-4">
+                    x-show="isOpen" x-transition.origin.top.duration.200ms x-cloak @click.outside="isOpen = false">
+                    <form action="#" method="post" class="space-y-4 p-4" >
 
                         <div class="space-y-2">
                             <div class="flex items-center">
@@ -199,7 +199,6 @@
                             <label for="notify_voters ml-2 text-sm">Notify Voters</label>
                         </div>
 
-
                     </form>
 
                 </div>
@@ -250,7 +249,7 @@
                             <button
                                 x-data="{
                                    isOpen : false
-                                }" @click="isOpen = !isOpen" @click.outside="isOpen = false"
+                                }" @click="isOpen = !isOpen"
                                 @keydown.esc.window="isOpen =false"
                                 class="relative bg-gray-200 hover:bg-gray-300 rounded-full h-7 px-2 transition duration-300 ease-in ">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" fill="none"
@@ -260,7 +259,7 @@
                                           d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"/>
                                 </svg>
                                 <ul
-                                    x-show="isOpen" x-transition.origin.top.left.duration.200ms x-cloak
+                                    x-show="isOpen" x-transition.origin.top.left.duration.200ms x-cloak @click.outside="isOpen = false"
                                     class=" absolute p-0 w-44 font-semibold text-sm shadow-lg z-20 bg-white overflow-hidden text-left left-5 rounded-xl ">
                                     <li><a href="#"
                                            class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Mark

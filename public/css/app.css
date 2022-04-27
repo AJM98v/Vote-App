@@ -1467,6 +1467,9 @@ select {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
 }
+[x-cloak] {
+    display: none !important;
+}
 .before\:absolute::before {
   content: var(--tw-content);
   position: absolute;
@@ -1871,8 +1874,6 @@ select {
     padding-right: 2rem;
   }
 }
-
-
 
 
 
