@@ -13,13 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/',[\App\Http\Controllers\IdeaController::class , 'index'])->name('index');
 
-Route::get('idea',function (){
-    return view('show');
-});
+Route::get('/ideas/{idea}' ,[\App\Http\Controllers\IdeaController::class , 'show'])->name('idea');
 
 
 
