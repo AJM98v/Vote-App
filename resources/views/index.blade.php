@@ -66,7 +66,7 @@
                 </div>
                 <div class="flex flex-1 px-2 py-6 flex-col  md:flex-row">
                     <a href="#" class="flex-none h-fit m-3 md:m-0">
-                        <img src="https://source.unsplash.com/200*200/?face&crop=face&v=1" alt="avatar"
+                        <img src="{{$idea->user->getAvatar()}}" alt="avatar"
                              class="w-14 h-14 rounded-2xl">
                     </a>
                     <div class="px-4 w-full flex flex-col justify-between">

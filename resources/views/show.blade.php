@@ -13,7 +13,7 @@
         class="idea-container mt-5 bg-white rounded-xl  flex ">
         <div class="flex flex-1 px-4 py-6 flex-col md:flex-row ">
             <a href="#" class="flex-none h-fit m-3">
-                <img src="https://source.unsplash.com/200*200/?face&crop=face&v=1" alt="avatar"
+                <img src="{{$idea->user->getAvatar()}}" alt="avatar"
                      class="w-14 h-14 rounded-2xl">
             </a>
             <div class="px-2 w-full">
