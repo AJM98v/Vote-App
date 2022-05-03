@@ -70,10 +70,10 @@
                 <div>
                     <select name="category_add" id="category_add"
                             class="text-sm bg-gray-100 w-full rounded-xl px-4 py-2 border-none placeholder-gray-900">
-                        <option value="Category One">Category One</option>
-                        <option value="Category Two">Category Two</option>
-                        <option value="Category three">Category three</option>
-                        <option value="Category four">Category four</option>
+                        @foreach(\App\Models\Category::all() as $category)
+                        <option value="{{$category->id}}">{{$category->name}}</option>
+
+                        @endforeach
                     </select>
                 </div>
                 <div>

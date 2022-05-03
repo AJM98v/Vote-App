@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Category;
 use App\Models\Idea;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -19,12 +20,17 @@ class ShowIdeasTest extends TestCase
     public function list_of_ideas_shows_on_main_page(): void
     {
 
+        $CategoryOne = Category::factory()->create(["name" => "Category 1"]);
+        $CategoryTwo = Category::factory()->create(["name" => "Category 2"]);
+
         $ideaOne = Idea::factory()->create([
             'title' => 'Mt First idea',
+            'category_id' => $CategoryOne->id,
             'description' => "Description One"
         ]);
         $ideaTwo = Idea::factory()->create([
             'title' => 'Mt Second idea',
+            'category_id' => $CategoryTwo->id,
             'description' => "Description Second"
         ]);
 
@@ -37,6 +43,8 @@ class ShowIdeasTest extends TestCase
         $response->assertSee($ideaOne->description);
         $response->assertSee($ideaTwo->title);
         $response->assertSee($ideaTwo->description);
+        $response->assertSee($CategoryOne->name);
+        $response->assertSee($CategoryTwo->name);
 
     }
 
@@ -46,9 +54,12 @@ class ShowIdeasTest extends TestCase
      */
     public function Single_idea_show_on_show_page(): void
     {
+        $Category = Category::factory()->create(["name" => "Category 1"]);
+
 
         $idea = Idea::factory()->create([
             'title' => 'Mt First idea',
+            'category_id' => $Category->id,
             'description' => "Description One"
         ]);
 
@@ -59,6 +70,7 @@ class ShowIdeasTest extends TestCase
 
         $response->assertSee($idea->title);
         $response->assertSee($idea->description);
+        $response->assertSee($Category->name);
 
     }
 
@@ -68,7 +80,10 @@ class ShowIdeasTest extends TestCase
     public function ideas_pagination_work(): void
     {
 
-        Idea::factory('6')->create();
+        $Category = Category::factory()->create(["name" => "Category"]);
+        Idea::factory('6')->create([
+            'category_id'=>$Category->id
+        ]);
 
         $ideaOne = Idea::find(1);
         $ideaOne->title = "My First Idea";
@@ -95,12 +110,16 @@ class ShowIdeasTest extends TestCase
     public function same_name_different_slug(): void
     {
 
+        $CategoryOne = Category::factory()->create(["name" => "Category 1"]);
+        $CategoryTwo = Category::factory()->create(["name" => "Category 2"]);
         $ideaOne = Idea::factory()->create([
             'title' => 'My First Idea',
+            'category_id' => $CategoryOne->id,
             'description' => "Description One"
         ]);
         $ideaTwo = Idea::factory()->create([
             'title' => 'My First Idea',
+            'category_id' => $CategoryTwo->id,
             'description' => "Description One"
         ]);
 
@@ -111,12 +130,11 @@ class ShowIdeasTest extends TestCase
         $this->assertSame('ideas/my-first-idea', request()->path());
 
 
-
         $response = $this->get(route('idea', $ideaTwo));
 
         $response->assertSuccessful();
 
-        $this->assertSame('ideas/my-first-idea-2', request()->path() );
+        $this->assertSame('ideas/my-first-idea-2', request()->path());
 
     }
 }
