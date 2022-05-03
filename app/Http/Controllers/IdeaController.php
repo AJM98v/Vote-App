@@ -14,7 +14,7 @@ class IdeaController extends Controller
      */
     public function index()
     {
-        $ideas = Idea::with('category','user')->paginate('5');
+        $ideas = Idea::with('category','user','status')->paginate('5');
         return  view('index',['ideas'=>$ideas]);
     }
 

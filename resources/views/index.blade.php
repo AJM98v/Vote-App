@@ -101,8 +101,9 @@
                                 </div>
                                 <div class="flex space-x-2 items-center">
                                     <div
-                                        class="bg-gray-300 text-xxs font-bold uppercase leading-none text-center w-28 rounded-full h-7 py-2 px-4">
-                                        Open
+                                        style="background-color: {{$idea->status->color}}"
+                                        class="text-white text-xxs font-bold uppercase leading-none text-center w-28 rounded-full h-7 py-2 px-4">
+                                        {{$idea->status->name}}
                                     </div>
 
                                     <button x-data="{
