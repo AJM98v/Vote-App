@@ -123,12 +123,12 @@ class ShowIdeasTest extends TestCase
         $ideaSix->save();
 
         $response = $this->get('/');
-        $response->assertSee($ideaOne->title);
-        $response->assertDontSee($ideaSix->title);
-
-        $response = $this->get('/?page=2');
         $response->assertSee($ideaSix->title);
         $response->assertDontSee($ideaOne->title);
+
+        $response = $this->get('/?page=2');
+        $response->assertSee($ideaOne->title);
+        $response->assertDontSee($ideaSix->title);
 
 
     }

@@ -1,5 +1,5 @@
 <div>
-    <form wire:submit.prevent='createIdea' " method=" post" class="p-4 space-y-4">
+    <form wire:submit.prevent='createIdea' method="post" class="p-4 space-y-4">
         <div>
             <input type="text" name="title" wire:model.defer='title'
                 class="w-full px-4 py-2 text-sm placeholder-gray-900 bg-gray-100 border-none rounded-xl"
