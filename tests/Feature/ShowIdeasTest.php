@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\Category;
 use App\Models\Idea;
 use App\Models\Status;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -23,6 +24,8 @@ class ShowIdeasTest extends TestCase
 
         $CategoryOne = Category::factory()->create(["name" => "Category 1"]);
         $CategoryTwo = Category::factory()->create(["name" => "Category 2"]);
+
+        $user = User::factory()->create();
         $statusOne = Status::create([
             'name' => 'open',
             'color' => '#000'
@@ -35,12 +38,14 @@ class ShowIdeasTest extends TestCase
 
         $ideaOne = Idea::factory()->create([
             'title' => 'Mt First idea',
+            'user_id'=>$user->id,
             'category_id' => $CategoryOne->id,
             'status_id'=>$statusOne->id,
             'description' => "Description One"
         ]);
         $ideaTwo = Idea::factory()->create([
             'title' => 'Mt Second idea',
+            'user_id'=>$user->id,
             'category_id' => $CategoryTwo->id,
             'status_id' => $statusTwo->id,
             'description' => "Description Second"
@@ -73,10 +78,11 @@ class ShowIdeasTest extends TestCase
             'name' => 'open',
             'color' => '#000'
         ]);
-
+        $user = User::factory()->create();
 
         $idea = Idea::factory()->create([
             'title' => 'Mt First idea',
+            'user_id'=>$user->id,
             'category_id' => $Category->id,
             'status_id' => $status->id,
             'description' => "Description One"
@@ -105,10 +111,12 @@ class ShowIdeasTest extends TestCase
             'name' => 'open',
             'color' => '#000'
         ]);
+        $user = User::factory()->create();
 
         Idea::factory('6')->create([
             'category_id' => $Category->id,
             'status_id' => $status->id,
+            'user_id'=>$user->id,
 
         ]);
 
@@ -145,18 +153,21 @@ class ShowIdeasTest extends TestCase
             'name' => 'open',
             'color' => '#000'
         ]);
+        $user = User::factory()->create();
         $statusTwo = Status::create([
             'name' => 'close',
             'color' => '#ec454f'
         ]);
         $ideaOne = Idea::factory()->create([
             'title' => 'My First Idea',
+            'user_id'=>$user->id,
             'category_id' => $CategoryOne->id,
             'status_id'=>$statusOne->id,
             'description' => "Description One"
         ]);
         $ideaTwo = Idea::factory()->create([
             'title' => 'My First Idea',
+            'user_id'=>$user->id,
             'category_id' => $CategoryTwo->id,
             'status_id'=>$statusTwo->id,
             'description' => "Description One"

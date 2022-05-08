@@ -14,7 +14,7 @@ class IdeaController extends Controller
      */
     public function index()
     {
-        $ideas = Idea::with('category','user','status')->orderByDesc('id')->paginate('5');
+        $ideas = Idea::with('category','user','status')->withCount('votes')->orderByDesc('id')->paginate('5');
         return  view('index',['ideas'=>$ideas]);
     }
 
@@ -48,7 +48,7 @@ class IdeaController extends Controller
     public function show(Idea $idea)
     {
         return view('show', [
-            'idea'=>$idea
+            'idea'=>$idea,
         ]);
     }
 
