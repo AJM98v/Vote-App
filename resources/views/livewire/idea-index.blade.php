@@ -1,4 +1,3 @@
-@dd($idea)
 <div
     x-data="{
                 }"
