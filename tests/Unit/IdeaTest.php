@@ -1,0 +1,53 @@
+<?php
+
+namespace Tests\Unit;
+
+use App\Models\Category;
+use App\Models\Idea;
+use App\Models\Status;
+use App\Models\User;
+use App\Models\Vote;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
+
+class IdeaTest extends TestCase
+{
+    use RefreshDatabase;
+
+
+    /**
+     * @return void
+     * @test
+     */
+    public function can_check_idea_is_voted_for_by_user() : void
+    {
+
+        $user = User::factory()->create();
+        $userB = User::factory()->create();
+
+        $Category = Category::factory()->create(['name'=>'category 1']);
+
+        $status = Status::factory()->create(['name'=>'open' , 'color'=>'black']);
+
+        $idea = Idea::factory()->create([
+            'title'=>'My Idea',
+            'user_id'=>$user->id,
+            'category_id'=>$Category->id,
+            'status_id'=>$status->id,
+            'description'=>'About My Idea'
+        ]);
+
+        Vote::factory()->create([
+            'idea_id'=>$idea->id,
+            'user_id'=>$user->id
+        ]);
+
+
+        $this->assertTrue($idea->isVotedByUser($user));
+        $this->assertFalse($idea->isVotedByUser($userB));
+        $this->assertFalse($idea->isVotedByUser(null));
+
+    }
+
+
+}

@@ -26,13 +26,21 @@
                     <div class="flex justify-between items-center px-4">
                         <div class="md:hidden flex items-center">
                             <div class="bg-gray-200  text-center text-xxs rounded-l-2xl h-10 px-4 py-2">
-                                <div class="font-bold leading-none text-xs">{{$votes}}</div>
+                                <div
+                                    class="font-bold leading-none text-xs @if($hasVoted) text-blue @endif">{{$votes}}</div>
                                 <div class="font-bold uppercase text-gray-600 ">Votes</div>
                             </div>
-                            <button
-                                class="px-3 py-2 h-10 rounded-2xl  uppercase hover:bg-gray-600 transition duration-300 ease-in hover:border-gray-300 border hover:text-white -mx-3 font-bold bg-gray-400 ">
-                                Vote
-                            </button>
+                            @if($hasVoted)
+                                <button
+                                    class="text-white bg-blue px-3 py-2 h-10 rounded-2xl  uppercase hover:bg-blue-hover transition duration-300 ease-in hover:border-blue border -mx-3 font-bold">
+                                    Voted
+                                </button>
+                            @else
+                                <button
+                                    class="px-3 py-2 h-10 rounded-2xl  uppercase hover:bg-gray-600 transition duration-300 ease-in hover:border-gray-300 border hover:text-white -mx-3 font-bold bg-gray-400 ">
+                                    Vote
+                                </button>
+                            @endif
                         </div>
                         <div class="flex space-x-2 items-center">
                             <div
@@ -73,12 +81,13 @@
         </div>
 
     </div> <!--end idea-container-->
-    <div class="buttons  px-5 py-8 flex items-center w-full justify-between flex-col md:flex-row space-y-2 md:space-y-0">
+    <div
+        class="buttons  px-5 py-8 flex items-center w-full justify-between flex-col md:flex-row space-y-2 md:space-y-0">
         <div class="flex justify-center space-x-3 items-center ">
             <div class="relative"
                  x-data="{
                          isOpen : false
-                        }"  @keydown.esc.window="isOpen =false"
+                        }" @keydown.esc.window="isOpen =false"
                  @click.outside="isOpen = false">
                 <button
                     @click="isOpen = !isOpen"
@@ -136,7 +145,7 @@
                 <div
                     class="absolute mt-2 md:left-0 drop-shadow-lg rounded-xl w-[15rem] right-0 z-20 bg-white font-semibold text-left "
                     x-show="isOpen" x-transition.origin.top.duration.200ms x-cloak @click.outside="isOpen = false">
-                    <form action="#" method="post" class="space-y-4 p-4" >
+                    <form action="#" method="post" class="space-y-4 p-4">
 
                         <div class="space-y-2">
                             <div class="flex items-center">
@@ -207,13 +216,20 @@
         </div>
         <div class="hidden md:flex justify-center items-center space-x-3">
             <div class="bg-white font-semibold text-center rounded-xl px-2 py-2 shadow drop-shadow">
-                <div class="text-xl leading-snug text-xs uppercase">{{$votes}}</div>
+                <div class="text-xl leading-snug text-xs uppercase @if($hasVoted) text-blue @endif">{{$votes}}</div>
                 <div class="text-gray-400 leading-none text-xs uppercase">Votes</div>
             </div>
-            <button
-                class="uppercase font-bold py-2 px-6 justify-center w-32 h-9 text-xs bg-gray-200 font-semibold rounded-xl border transition duration-200 ease-in border-gray-200 hover:border-gray-400">
-                Vote
-            </button>
+            @if($hasVoted)
+                <button
+                    class="text-white bg-blue px-3 py-2 h-10 rounded-2xl  uppercase hover:bg-blue-hover transition duration-300 ease-in hover:border-blue border  -mx-3 font-bold ">
+                    Voted
+                </button>
+            @else
+                <button
+                    class="px-3 py-2 h-10 rounded-2xl  uppercase hover:bg-gray-600 transition duration-300 ease-in hover:border-gray-300 border hover:text-white -mx-3 font-bold bg-gray-400 ">
+                    Vote
+                </button>
+            @endif
 
         </div>
 

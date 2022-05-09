@@ -74,7 +74,7 @@ class VoteShowPageTest extends TestCase
             'user_id' => $userB->id
         ]);
 
-        Livewire::test(IdeaShow::class,['idea'=>$idea])->assertViewHas('votes',2);
+        Livewire::test(IdeaShow::class, ['idea' => $idea])->assertViewHas('votes', 2);
 
 
     }
@@ -101,11 +101,40 @@ class VoteShowPageTest extends TestCase
         ]);
 
 
+        Livewire::test(IdeaShow::class, ['idea' => $idea])
+            ->set('votes', 2)
+            ->assertSet('votes', '2');
 
-        Livewire::test(IdeaShow::class,['idea'=>$idea])
-            ->set('votes',2)
-            ->assertSet('votes','2');
 
+    }
+
+
+    /**
+     * @return void
+     * @test
+     */
+    public function user_who_logged_in_shows_voted_if_idea_already_voted_for(): void
+    {
+        $user = User::factory()->create();
+
+        $Category = Category::factory()->create(['name' => 'category 1']);
+
+        $status = Status::factory()->create(['name' => 'open', 'color' => 'black']);
+
+        $idea = Idea::factory()->create([
+            'title' => 'My Idea',
+            'user_id' => $user->id,
+            'category_id' => $Category->id,
+            'status_id' => $status->id,
+            'description' => 'About My Idea'
+        ]);
+
+
+        Livewire::actingAs($user)
+            ->test(IdeaShow::class, ['idea' => $idea])
+            ->set('votes', 2)
+            ->Set('hasVoted', true)
+            ->assertSee('Voted');
 
 
     }
