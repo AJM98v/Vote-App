@@ -17,7 +17,7 @@ class IdeaController extends Controller
     {
         $ideas = Idea::with('category', 'user', 'status')
             ->addSelect(['voted_by_user' => Vote::select('id')
-                ->where('user_id', auth()->user())->whereColumn('idea_id', 'ideas.id')
+                ->where('user_id', auth()->user())->whereColumn('idea_id','ideas.id')
             ])
             ->withCount('votes')
             ->orderByDesc('id')

@@ -49,5 +49,67 @@ class IdeaTest extends TestCase
 
     }
 
+    /**
+     * @return void
+     * @test
+     */
+
+    public function user_can_vote_for_idea() : void
+    {
+
+        $user = User::factory()->create();
+
+        $Category = Category::factory()->create(['name'=>'category 1']);
+
+        $status = Status::factory()->create(['name'=>'open' , 'color'=>'black']);
+
+        $idea = Idea::factory()->create([
+            'title'=>'My Idea',
+            'user_id'=>$user->id,
+            'category_id'=>$Category->id,
+            'status_id'=>$status->id,
+            'description'=>'About My Idea'
+        ]);
+
+        $this->assertFalse($idea->isVotedByUser($user));
+        $idea->vote($user);
+       $this->assertTrue($idea->isVotedByUser($user));
+
+    }
+
+
+
+    /**
+     * @return void
+     * @test
+     */
+    public function user_can__un_vote_for_idea() : void
+    {
+
+        $user = User::factory()->create();
+
+        $Category = Category::factory()->create(['name'=>'category 1']);
+
+        $status = Status::factory()->create(['name'=>'open' , 'color'=>'black']);
+
+        $idea = Idea::factory()->create([
+            'title'=>'My Idea',
+            'user_id'=>$user->id,
+            'category_id'=>$Category->id,
+            'status_id'=>$status->id,
+            'description'=>'About My Idea'
+        ]);
+
+        Vote::factory()->create([
+            'idea_id'=>$idea->id,
+            'user_id'=>$user->id
+        ]);
+
+        $this->assertTrue($idea->isVotedByUser($user));
+        $idea->removeVote($user);
+       $this->assertFalse($idea->isVotedByUser($user));
+
+    }
+
 
 }

@@ -1,3 +1,4 @@
+@dd($idea)
 <div
     x-data="{
                 }"
@@ -19,12 +20,15 @@
         </div>
         <div class="mt-8">
             @if($hasVoted)
-            <button
+            <button wire:click.prevent="vote"
                 class="w-20 bg-blue text-white font-bold text-xxs uppercase rounded-xl px-4 py-3 transition duration-300 ease-in border border-blue hover:border-blue-hover hover:bg-blue-hover">
                 Voted
             </button>
             @else
-
+                <button wire:click.prevent="vote"
+                        class="w-20 bg-gray-400 text-white font-bold text-xxs uppercase rounded-xl px-4 py-3 transition duration-300 ease-in border border-gray-400 hover:border-gray-600 hover:bg-gray-600">
+                    Vote
+                </button>
             @endif
 
         </div>
@@ -61,12 +65,12 @@
                             <div class="font-bold uppercase text-gray-600 ">Votes</div>
                         </div>
                         @if($hasVoted)
-                            <button
+                            <button wire:click.prevent="vote"
                                 class="bg-blue font-bold text-white px-3 py-2 h-10 rounded-2xl  uppercase hover:bg-blue-hover transition duration-300 ease-in hover:border-blue border -mx-3 ">
                                 Voted
                             </button>
                         @else
-                            <button
+                            <button  wire:click.prevent="vote"
                                 class="px-3 py-2 h-10 rounded-2xl  uppercase hover:bg-gray-600 transition duration-300 ease-in hover:border-gray-300 border hover:text-white -mx-3 font-bold bg-gray-400 ">
                                 Vote
                             </button>
