@@ -43,6 +43,6 @@
     </div> <!--end ideas-container -->
 
     <div class="m-5">
-        {{$ideas->links()}}
+        {{$ideas->appends(request()->query())->links()}}
     </div>
 </div>

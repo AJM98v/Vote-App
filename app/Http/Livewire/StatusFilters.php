@@ -2,12 +2,15 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Idea;
+use App\Models\Status;
 use Illuminate\Support\Facades\URL;
 use Livewire\Component;
 
 class StatusFilters extends Component
 {
     public $status = 'All';
+    public $count ;
 
     protected $queryString = ['status'];
 
@@ -39,6 +42,8 @@ class StatusFilters extends Component
 
     public function mount()
     {
+        $this->count = Status::getCount();
+
         if (URL::current() !== URL::route('index')) {
             $this->status = null;
             $this->queryString = [];
