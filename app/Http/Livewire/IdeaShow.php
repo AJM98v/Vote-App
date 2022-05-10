@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire;
 
+use App\Exceptions\VoteDuplicateExption;
+use App\Exceptions\VoteNotFOundExption;
 use App\Models\Idea;
 use App\Models\Vote;
 use Livewire\Component;
@@ -30,13 +32,23 @@ class IdeaShow extends Component
             return redirect(route('login'));
         }
 
-        if ($this->hasVoted){
-            $this->idea->removeVote(auth()->user());
-            $this->votes --;
+        if ($this->hasVoted) {
+            try {
+                $this->idea->removeVote(auth()->user());
+            } catch (VoteNotFOundExption $e) {
+                //do Nothing
+            }
+
+            $this->votes--;
             $this->hasVoted = false;
-        }else{
-            $this->idea->vote(auth()->user());
-            $this->votes ++;
+        } else {
+            try {
+                $this->idea->vote(auth()->user());
+            } catch (VoteDuplicateExption $e) {
+                //do Nothing
+            }
+
+            $this->votes++;
             $this->hasVoted = true;
         }
     }

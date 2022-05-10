@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire;
 
+use App\Exceptions\VoteDuplicateExption;
+use App\Exceptions\VoteNotFOundExption;
 use App\Models\Idea;
 use Livewire\Component;
 
@@ -11,7 +13,8 @@ class IdeaIndex extends Component
     public $votes;
     public $hasVoted;
 
-    public function mount(Idea $idea){
+    public function mount(Idea $idea)
+    {
         $this->idea = $idea;
         $this->votes = $idea->votes_count;
         $this->hasVoted = $idea->isVotedByUser(auth()->user());
@@ -26,17 +29,26 @@ class IdeaIndex extends Component
             return redirect(route('login'));
         }
 
-        if ($this->hasVoted){
+        if ($this->hasVoted) {
+            try {
                 $this->idea->removeVote(auth()->user());
-                $this->votes --;
-                $this->hasVoted =false;
-        }else{
-            $this->idea->vote(auth()->user());
-            $this->votes ++;
-            $this->hasVoted =true;
+            } catch (VoteNotFOundExption $e) {
+                //do Nothing
+            }
+
+            $this->votes--;
+            $this->hasVoted = false;
+        } else {
+            try {
+                $this->idea->vote(auth()->user());
+            } catch (VoteDuplicateExption $e) {
+                //do Nothing
+            }
+
+            $this->votes++;
+            $this->hasVoted = true;
         }
     }
-
 
 
     public function render()
