@@ -69,28 +69,7 @@
         </div>
     </div>
     <div class="md:max-w-2xl w-full px-4 md:px-0">
-        <nav class=" justify-between items-center text-xs hidden md:flex">
-            <ul class="uppercase font-semibold space-x-10 border-b-4 pb-3 flex">
-                <li><a href="" class="border-b-blue border-b-4 pb-3">All Ideas (87)</a></li>
-                <li><a href=""
-                       class="text-gray-400 transition duration-200 ease-in border-b-4 pb-3 hover:border-b-blue hover:text-black">Considering
-                        (6)</a></li>
-                <li><a href=""
-                       class="text-gray-400 transition duration-200 ease-in border-b-4 pb-3 hover:border-b-blue hover:text-black">In
-                        Process (1)</a></li>
-
-            </ul>
-            <ul class="uppercase font-semibold space-x-10 border-b-4 pb-3 flex ml-20">
-                <li><a href=""
-                       class="text-gray-400 transition duration-200 ease-in border-b-4 pb-3 hover:border-b-blue hover:text-black">implemented
-                        (10)</a></li>
-                <li><a href=""
-                       class="text-gray-400 transition duration-200 ease-in border-b-4 pb-3 hover:border-b-blue hover:text-black">closed
-                        (55)</a></li>
-
-            </ul>
-
-        </nav>
+        @livewire('status-filters')
 
         <div class="mt-6">
             {{ $slot }}
