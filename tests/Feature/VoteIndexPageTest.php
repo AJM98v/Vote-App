@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Http\Livewire\IdeaIndex;
+use App\Http\Livewire\IdeasIndex;
 use App\Models\Category;
 use App\Models\Idea;
 use App\Models\Status;
@@ -134,13 +135,12 @@ class VoteIndexPageTest extends TestCase
         ]);
 
 
-        $response = $this->actingAs($user)->get(route('index'));
-        $ideaWithVotes = $response['ideas']->items()[0];
+
 
 
         Livewire::actingAs($user)
-            ->test(IdeaIndex::class, ['idea' => $ideaWithVotes])
-            ->set('votes', 2)
+            ->test(IdeaIndex::class, ['idea' => $idea])
+            ->set('votes', 1)
             ->Set('hasVoted', true)
             ->assertSee('Voted');
 
