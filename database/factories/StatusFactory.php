@@ -18,7 +18,8 @@ class StatusFactory extends Factory
     {
         return [
             //
-
+            'name' => $this->faker->words('5', true),
+            'color' => $this->faker->hexColor()
         ];
     }
 }

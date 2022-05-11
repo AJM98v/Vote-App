@@ -14,6 +14,7 @@ class IdeasIndex extends Component
     {
         $statuses = Status::all()->pluck('id','name');
 
+
         return view('livewire.ideas-index',[
             'ideas'=> Idea::with('category', 'user', 'status')
 //            ->addSelect(['votedByUser'=>Vote::where('user_id',auth()->user())->whereColumn('idea_id','ideas.id')->select('id')])
