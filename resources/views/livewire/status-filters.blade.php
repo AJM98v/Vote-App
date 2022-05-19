@@ -19,10 +19,10 @@
                class=@if($status !== 'Implemented') "text-gray-400 transition duration-200 ease-in border-b-4 pb-3 hover:border-b-blue hover:text-black"@else
                 "border-b-blue border-b-4 pb-3"
             @endif>implemented ({{$count['implemented']}})</a></li>
-        <li><a wire:click.prevent="setStatus('Closed')" href=""
-               class=@if($status !== 'Closed') "text-gray-400 transition duration-200 ease-in border-b-4 pb-3 hover:border-b-blue hover:text-black"@else
+        <li><a wire:click.prevent="setStatus('close')" href=""
+               class=@if($status !== 'close') "text-gray-400 transition duration-200 ease-in border-b-4 pb-3 hover:border-b-blue hover:text-black"@else
                 "border-b-blue border-b-4 pb-3"
-            @endif>closed ({{$count['closed']}})</a></li>
+            @endif>closed ({{$count['close']}})</a></li>
 
     </ul>
 
