@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Http\Livewire\IdeasIndex;
 use App\Http\Livewire\StatusFilters;
 use App\Models\Category;
 use App\Models\Idea;
@@ -156,23 +157,29 @@ class StatusFiltersTest extends TestCase
             'status_id' => $statusInProgress->id
         ]);
 
-        $response = $this->get(route('index',[
-            'status'=>"InProgress"
-        ]));
-        $response->assertSuccessful();
-        $response->assertSee('<div
-                            style="background-color: #ffc73c"
-                            class="text-white text-xxs font-bold uppercase leading-none text-center w-28 rounded-full h-7 py-2 px-4">
-                            InProgress
-                        </div>',false);
-        $response->assertDontSee('<div
-                            style="background-color: #8b60ed"
-                            class="text-white text-xxs font-bold uppercase leading-none text-center w-28 rounded-full h-7 py-2 px-4">
-                            Considering
-                        </div>',false);
+//        $response = $this->get(route('index',[
+//            'status'=>"InProgress"
+//        ]));
+//        $response->assertSuccessful();
+//        $response->assertSee('<div
+//                            style="background-color: #ffc73c"
+//                            class="text-white text-xxs font-bold uppercase leading-none text-center w-28 rounded-full h-7 py-2 px-4">
+//                            InProgress
+//                        </div>',false);
+//        $response->assertDontSee('<div
+//                            style="background-color: #8b60ed"
+//                            class="text-white text-xxs font-bold uppercase leading-none text-center w-28 rounded-full h-7 py-2 px-4">
+//                            Considering
+//                        </div>',false);
+
+        Livewire::withQueryParams(['status' => 'InProgress'])
+            ->test(IdeasIndex::class)
+            ->assertViewHas('ideas', fn($ideas) => $ideas->count() === 3
+                && $ideas->first()->status->name === "InProgress"
+
+            );
 
     }
-
 
 
     /**
@@ -196,11 +203,9 @@ class StatusFiltersTest extends TestCase
         ]);
 
 
-        $response = $this->get(route('idea',$idea));
-        $response->assertDontSee('border-b-blue border-b-4 pb-3',false);
+        $response = $this->get(route('idea', $idea));
+        $response->assertDontSee('border-b-blue border-b-4 pb-3', false);
     }
-
-
 
 
     /**
@@ -225,9 +230,8 @@ class StatusFiltersTest extends TestCase
 
 
         $response = $this->get(route("index"));
-        $response->assertSee('border-b-blue border-b-4 pb-3',false);
+        $response->assertSee('border-b-blue border-b-4 pb-3', false);
     }
-
 
 
 }
