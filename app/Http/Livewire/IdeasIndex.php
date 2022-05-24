@@ -13,7 +13,9 @@ class IdeasIndex extends Component
 
     public $status;
     public $category;
-    protected $queryString = ['status', 'category'];
+    public $filter;
+
+    protected $queryString = ['status', 'category', 'filter'];
 
 
     protected $listeners = ['queryStringStatus'];
@@ -28,6 +30,7 @@ class IdeasIndex extends Component
     {
         $this->category = request()->category ?? "All";
         $this->status = request()->status ?? "All";
+        $this->filter = request()->filter ?? "No Filter";
     }
 
     public function updatedCategory($category)
@@ -38,6 +41,18 @@ class IdeasIndex extends Component
             'category' => $this->category
         ]);
     }
+
+    public function updatedFilter($filter)
+    {
+        $this->filter = $filter;
+        return redirect()->route('index', [
+            'status' => $this->status,
+            'category' => $this->category,
+            'filter' => $this->filter
+        ]);
+    }
+
+
 
 
     public function render()
@@ -53,6 +68,10 @@ class IdeasIndex extends Component
                     return $query->where('status_id', $statuses->get($this->status));
                 })->when(request()->category && request()->category !== "All", function ($query) use ($categories) {
                     return $query->where('category_id', $categories->pluck('id', 'name')->get(request()->category));
+                })->when($this->filter === "Top Voted", function ($query) {
+                    return $query->orderByDesc('votes_count');
+                })->when(auth()->user() && $this->filter === "My Ideas", function ($query) {
+                    return $query->where("user_id",auth()->user()->id);
                 })
                 ->withCount('votes')
                 ->orderByDesc('id')
