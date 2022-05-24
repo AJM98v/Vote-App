@@ -14,8 +14,9 @@ class IdeasIndex extends Component
     public $status;
     public $category;
     public $filter;
+    public $search;
 
-    protected $queryString = ['status', 'category', 'filter'];
+    protected $queryString = ['status', 'category', 'filter' ,'search'];
 
 
     protected $listeners = ['queryStringStatus'];
@@ -52,7 +53,16 @@ class IdeasIndex extends Component
         ]);
     }
 
-
+    public function updatedSearch($search)
+    {
+        $this->search = $search;
+        return redirect()->route('index', [
+            'status' => $this->status,
+            'category' => $this->category,
+            'filter' => $this->filter,
+            'search'=>$this->search
+        ]);
+    }
 
 
     public function render()
@@ -71,12 +81,14 @@ class IdeasIndex extends Component
                 })->when($this->filter === "Top Voted", function ($query) {
                     return $query->orderByDesc('votes_count');
                 })->when(auth()->user() && $this->filter === "My Ideas", function ($query) {
-                    return $query->where("user_id",auth()->user()->id);
+                    return $query->where("user_id", auth()->user()->id);
+                })->when($this->search && strlen($this->search) >= 3 , function ($query){
+                    return $query->where("title",'like',"%".$this->search."%");
                 })
                 ->withCount('votes')
                 ->orderByDesc('id')
                 ->paginate('5'),
-            'categories' => $categories
+            'categories' => $categories,
         ]);
     }
 }

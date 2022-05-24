@@ -3,15 +3,16 @@
         class="flex flex-col space-y-4 filters md:flex-row md:items-center md:justify-center md:space-x-6 md:space-y-0">
         <div class="w-full md:w-1/3">
             <select wire:model='category' name="category" id="category" class="w-full px-4 py-2 border-none rounded-xl">
-                <option value="All" >All Category</option>
+                <option value="All">All Category</option>
                 @foreach($categories as $category)
                     <option value="{{$category->name}}">{{$category->name}}</option>
                 @endforeach
             </select>
         </div>
         <div class="w-full md:w-1/3">
-            <select wire:model="filter" name="other_filter" id="other_filter" class="w-full px-4 py-2 border-none rounded-xl">
-                <option value="No Filter" >No Filter</option>
+            <select wire:model="filter" name="other_filter" id="other_filter"
+                    class="w-full px-4 py-2 border-none rounded-xl">
+                <option value="No Filter">No Filter</option>
                 <option value="Top Voted">Top Voted</option>
                 <option value="My Ideas">My Ideas</option>
 
@@ -26,8 +27,18 @@
                 </svg>
             </div>
 
-            <input type="search" placeholder="Find Ideas"
+            <input type="search" placeholder="Find Ideas" wire:model.debounce.1000ms="search"
                    class="w-full px-4 py-2 pl-10 placeholder-gray-900 bg-white border-none rounded-xl">
+
+{{--            @if($results !== null)--}}
+{{--                <div class="absolute top-10 left-0 bg-white w-full p-3">--}}
+{{--                    <ul>--}}
+{{--                        @foreach($results as $result)--}}
+{{--                            <li class="m-2">{{$result->title}}</li>--}}
+{{--                        @endforeach--}}
+{{--                    </ul>--}}
+{{--                </div>--}}
+{{--            @endif--}}
         </div>
 
 
@@ -36,10 +47,12 @@
 
 
     <div class="my-6 space-y-6 ideas-container">
-        @foreach($ideas as $idea)
+        @forelse($ideas as $idea)
             @livewire('idea-index',['idea'=>$idea,'key'=>$idea->id])
+        @empty
+            <div>No Ideas Found</div>
 
-        @endforeach
+        @endforelse
     </div> <!--end ideas-container -->
 
     <div class="m-5">
