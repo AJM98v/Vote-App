@@ -48,8 +48,12 @@ class IdeaController extends Controller
      */
     public function show(Idea $idea)
     {
+
         return view('show', [
             'idea' => $idea,
+            "backUrl" => url()->previous() !== url()->current()
+                ? url()->previous()
+                : route("index")
         ]);
     }
 
