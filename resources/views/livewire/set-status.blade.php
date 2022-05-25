@@ -69,14 +69,14 @@
                     <span class="ml-2">Attach</span>
                 </button>
                 <button
-                    class="text-white flex items-center p-2 justify-center w-1/2 text-xs bg-blue font-semibold rounded-xl transition duration-200 ease-in  hover:bg-blue-hover"
+                    class="disabled:opacity-50 text-white flex items-center p-2 justify-center w-1/2 text-xs bg-blue font-semibold rounded-xl transition duration-200 ease-in  hover:bg-blue-hover"
                     type="submit">Update
                 </button>
 
             </div>
             <div>
-                <input id="notify_voters" name="notify_voters" type="checkbox"
-                       class="focus:ring-0 h-4 w-4 text-gray-600 border-none bg-gray-300 rounded" checked>
+                <input id="notify_voters" wire:model="notify" name="notify_voters" type="checkbox"
+                       class="focus:ring-0 h-4 w-4 text-gray-600 border-none bg-gray-300 rounded" >
                 <label for="notify_voters ml-2 text-sm">Notify Voters</label>
             </div>
 
