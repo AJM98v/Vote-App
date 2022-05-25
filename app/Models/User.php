@@ -107,5 +107,10 @@ class User extends Authenticatable
             ;
     }
 
+   public function isAdmin()
+   {
+       return $this->email === "lakaledop@mailinator.com";
+   }
+
 
 }
