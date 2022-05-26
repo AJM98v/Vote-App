@@ -19,4 +19,5 @@ Route::get('/ideas/{idea}' ,[\App\Http\Controllers\IdeaController::class , 'show
 
 
 
+
 require __DIR__.'/auth.php';

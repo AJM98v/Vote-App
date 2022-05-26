@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Jobs\NotifyVoters;
 use App\Mail\IdeaStatusUpdate;
 use App\Models\Idea;
 use App\Models\Status;
@@ -43,14 +44,14 @@ class SetStatus extends Component
 
     public function notifyAllVoters(): void
     {
-        $this->idea->votes()
-            ->select('name', 'email')
-            ->chunk('100', function ($voters) {
-                foreach ($voters as $user){
-                    Mail::to($user->email)->queue(new IdeaStatusUpdate($this->idea));
-                }
+       $voters =  $this->idea->votes()->get(['email'])->toArray();
 
-            });
+
+       foreach ($voters as $user){
+           NotifyVoters::dispatch($user['email'], $this->idea)->delay(now()->addSeconds(30));
+       }
+
+
 
 
     }
