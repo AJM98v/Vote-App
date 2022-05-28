@@ -4,12 +4,14 @@ namespace Tests\Feature;
 
 use App\Http\Livewire\IdeaShow;
 use App\Http\Livewire\SetStatus;
+use App\Jobs\NotifyVoters;
 use App\Models\Category;
 use App\Models\Idea;
 use App\Models\Status;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Queue;
 use Livewire\Livewire;
 use Tests\TestCase;
 

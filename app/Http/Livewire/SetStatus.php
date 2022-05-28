@@ -36,25 +36,16 @@ class SetStatus extends Component
             abort(Response::HTTP_FORBIDDEN);
         }
         if ($this->notify) {
-            $this->notifyAllVoters();
+            $voters =  $this->idea->votes()->get(['email'])->toArray();
+
+            foreach ($voters as $user){
+                NotifyVoters::dispatch($user['email'], $this->idea)->delay(now()->addSeconds(20));
+            }
 
         }
 
     }
 
-    public function notifyAllVoters(): void
-    {
-       $voters =  $this->idea->votes()->get(['email'])->toArray();
-
-
-       foreach ($voters as $user){
-           NotifyVoters::dispatch($user['email'], $this->idea)->delay(now()->addSeconds(30));
-       }
-
-
-
-
-    }
 
     public function render()
     {
