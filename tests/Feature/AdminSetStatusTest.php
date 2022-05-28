@@ -26,7 +26,7 @@ class AdminSetStatusTest extends TestCase
      */
     public function show_page_contains_Set_status_livewire_component_when_user_is_Admin(): void
     {
-        $user = User::factory()->create(['email' => "lakaledop@mailinator.com"]);
+        $user = User::factory()->create(['email' => "abolfazljafari563@gmail.com"]);
 
         $category = Category::factory()->create(['name' => "Category 1"]);
 
@@ -78,7 +78,7 @@ class AdminSetStatusTest extends TestCase
     public function initial_status_is_set_correctly(): void
     {
         $user = User::factory()->create([
-            'email'=>"lakaledop@mailinator.com"
+            'email'=>"abolfazljafari563@gmail.com"
         ]);
 
         $category = Category::factory()->create(['name' => "Category 1"]);
@@ -107,7 +107,7 @@ class AdminSetStatusTest extends TestCase
 
     public function can_set_status_correctly() :void
     {
-        $user = User::factory()->create(['email' => "lakaledop@mailinator.com"]);
+        $user = User::factory()->create(['email' => "abolfazljafari563@gmail.com"]);
 
         $category = Category::factory()->create(['name' => "Category 1"]);
 

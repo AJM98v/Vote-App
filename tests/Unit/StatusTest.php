@@ -115,7 +115,7 @@ class StatusTest extends TestCase
         $this->assertEquals(4,Status::getCount()['considering']);
         $this->assertEquals(1,Status::getCount()['inProgress']);
         $this->assertEquals(4,Status::getCount()['implemented']);
-        $this->assertEquals(3,Status::getCount()['closed']);
+        $this->assertEquals(3,Status::getCount()['close']);
 
 
 
