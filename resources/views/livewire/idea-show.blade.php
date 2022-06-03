@@ -65,7 +65,8 @@
                                     x-show="isOpen" x-transition.origin.top.left.duration.200ms x-cloak
                                     class="absolute p-0 w-44 font-semibold text-sm shadow-lg   bg-white overflow-hidden text-left right-0 md:left-5  mt-1 md:mt-0 rounded-xl ">
                                     <li><a href="#"
-                                           class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Edit
+                                           @click="$dispatch('edit-modal')"
+                                           class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in" >Edit
                                             Idea</a></li>
                                     <li><a href="#"
                                            class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Delete

@@ -1,4 +1,13 @@
-<div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+<div
+    x-data="{
+            editModal : false
+    }"
+    x-cloak
+    @edit-modal.window="editModal=true"
+    @keyup.esc.window="editModal = false"
+    x-transition.origin.bottom.duration.300ms.delay.75ms
+    class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true" x-show="editModal"
+    >
     <!--
       Background backdrop, show/hide based on modal state.
 
@@ -23,14 +32,20 @@
                 From: "opacity-100 translate-y-0 sm:scale-100"
                 To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             -->
-            <div
-                class="relative bg-white rounded-t-xl text-left overflow-hidden shadow-xl transform transition-all  sm:max-w-lg sm:w-full">
-                <div class="absolute top-3 right-3 text-gray-400 hover:text-red transition-all ease-in duration-300 cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg></div>
+            <div @click.outside="editModal =false"
+                 class="relative bg-white rounded-t-xl text-left overflow-hidden shadow-xl transform transition-all  sm:max-w-lg sm:w-full">
+                <div @click="editModal =false"
+                     class="absolute top-3 right-3 text-gray-400 hover:text-red transition-all ease-in duration-300 cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                         stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <h3 class="text-center text-lg font-medium text-gray-800">Edit Idea</h3>
-                    <p class="text-xxs text-center text-gray-500 my-3 leading-5 px-2">You Have One Hour to Edit Your Idea After
+                    <p class="text-xxs text-center text-gray-500 my-3 leading-5 px-2">You Have One Hour to Edit Your
+                        Idea After
                         Creating it </p>
                     <form wire:submit.prevent='EditIdea()' method="post" class="p-4 space-y-4">
                         <div>
