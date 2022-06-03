@@ -5,6 +5,8 @@
     x-cloak
     @edit-modal.window="editModal=true"
     @keyup.esc.window="editModal = false"
+
+    @close-modal.window = "editModal = false"
     x-transition.origin.bottom.duration.300ms.delay.75ms
     class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true" x-show="editModal"
     >
@@ -47,7 +49,7 @@
                     <p class="text-xxs text-center text-gray-500 my-3 leading-5 px-2">You Have One Hour to Edit Your
                         Idea After
                         Creating it </p>
-                    <form wire:submit.prevent='EditIdea()' method="post" class="p-4 space-y-4">
+                    <form wire:submit.prevent='editIdea()' method="post" class="p-4 space-y-4">
                         <div>
                             <input type="text" name="title" wire:model.defer='title'
                                    class="w-full px-4 py-2 text-sm placeholder-gray-900 bg-gray-100 border-none rounded-xl"
@@ -61,13 +63,13 @@
                         <div>
                             <select name="category_add" id="category_add" wire:model.defer='category'
                                     class="w-full px-4 py-2 text-sm placeholder-gray-900 bg-gray-100 border-none rounded-xl">
-                                {{--                                @foreach ($categories as $category)--}}
-                                {{--                                    <option value="{{ $category->id }}">{{ $category->name }}</option>--}}
-                                {{--                                @endforeach--}}
+                                                                @foreach ($categories as $category)
+                                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                                @endforeach
                             </select>
-                            {{--                            @error('category')--}}
-                            {{--                            <p class="mt-2 text-xs text-red">{{ $message }}</p>--}}
-                            {{--                            @enderror--}}
+                                                        @error('category')
+                                                        <p class="mt-2 text-xs text-red">{{ $message }}</p>
+                                                        @enderror
                         </div>
                         <div>
             <textarea name="idea" id="idea" wire:model.defer='description'
@@ -91,7 +93,7 @@
                             </button>
                             <button
                                 class="flex items-center justify-center w-1/2 px-6 py-3 text-sm font-semibold text-white transition duration-200 ease-in h-11 bg-blue rounded-xl hover:bg-blue-hover"
-                                type="submit">Submit
+                                type="submit">Update
                             </button>
 
                         </div>

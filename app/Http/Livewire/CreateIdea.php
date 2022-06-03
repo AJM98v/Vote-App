@@ -8,17 +8,16 @@ use Livewire\Component;
 
 class CreateIdea extends Component
 {
-    public $title;
-    public $category = 1;
-    public $description;
+    public string $title;
+    public int $category = 1;
+    public string $description;
 
 
-   protected $rules = [
+   protected array $rules = [
        'title'=>'required|min:4',
-       'category'=>'required|integer',
+       'category'=>'required|integer|exists:categories,id',
        'description'=>'required',
    ];
-
 
 
 

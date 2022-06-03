@@ -16,10 +16,15 @@ class IdeaShow extends Component
     public $hasVoted;
 
 
-    protected $listeners = ['statusUpdateEvent'=>"updateStatus"];
+    protected $listeners = ['statusUpdateEvent'=>"updateStatus" , 'IdeaUpdate'];
 
+    public function IdeaUpdate() :void
+    {
 
-    public function updateStatus()
+        $this->idea->refresh();
+    }
+
+    public function updateStatus() :void
     {
         $this->idea->refresh();
     }

@@ -32,12 +32,12 @@
                             </div>
                             @if($hasVoted)
                                 <button wire:click.prevent="vote"
-                                    class="text-white bg-blue px-3 py-2 h-10 rounded-2xl  uppercase hover:bg-blue-hover transition duration-300 ease-in hover:border-blue border -mx-3 font-bold">
+                                        class="text-white bg-blue px-3 py-2 h-10 rounded-2xl  uppercase hover:bg-blue-hover transition duration-300 ease-in hover:border-blue border -mx-3 font-bold">
                                     Voted
                                 </button>
                             @else
                                 <button wire:click.prevent="vote"
-                                    class="px-3 py-2 h-10 rounded-2xl  uppercase hover:bg-gray-600 transition duration-300 ease-in hover:border-gray-300 border hover:text-white -mx-3 font-bold bg-gray-400 ">
+                                        class="px-3 py-2 h-10 rounded-2xl  uppercase hover:bg-gray-600 transition duration-300 ease-in hover:border-gray-300 border hover:text-white -mx-3 font-bold bg-gray-400 ">
                                     Vote
                                 </button>
                             @endif
@@ -49,12 +49,15 @@
                                 {{$idea->status->name}}
                             </div>
 
-                            <div class="relative" x-data="{
+
+                            <div class="relative"
+                                 x-data="{
                             isOpen : false
-                            }"  @keydown.esc.window="isOpen =false">
-                                <button  @click="isOpen = !isOpen"
+                            }" @keydown.esc.window="isOpen =false">
+                                <button @click="isOpen = !isOpen"
                                         class="relative bg-gray-200 hover:bg-gray-300 rounded-full h-7 px-2 transition duration-300 ease-in ">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" fill="none"
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500"
+                                         fill="none"
                                          viewBox="0 0 24 24"
                                          stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -64,10 +67,12 @@
                                 <ul @click.outside="isOpen = false"
                                     x-show="isOpen" x-transition.origin.top.left.duration.200ms x-cloak
                                     class="absolute p-0 w-44 font-semibold text-sm shadow-lg   bg-white overflow-hidden text-left right-0 md:left-5  mt-1 md:mt-0 rounded-xl ">
-                                    <li><a href="#"
-                                           @click="$dispatch('edit-modal')"
-                                           class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in" >Edit
-                                            Idea</a></li>
+                                    @can("update",$idea)
+                                        <li><a href="#"
+                                               @click="$dispatch('edit-modal')"
+                                               class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Edit
+                                                Idea</a></li>
+                                    @endcan
                                     <li><a href="#"
                                            class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Delete
                                             Idea</a></li>
@@ -76,7 +81,6 @@
                                             As Spam</a></li>
                                 </ul>
                             </div>
-
 
 
                         </div>
@@ -136,7 +140,7 @@
 
             @auth
                 @if(auth()->user()->isAdmin())
-            @livewire("set-status", ['idea'=>$idea])
+                    @livewire("set-status", ['idea'=>$idea])
                 @endif
             @endauth
 
@@ -148,12 +152,12 @@
             </div>
             @if($hasVoted)
                 <button wire:click.prevent="vote"
-                    class="text-white bg-blue px-3 py-2 h-10 rounded-2xl  uppercase hover:bg-blue-hover transition duration-300 ease-in hover:border-blue border  -mx-3 font-bold ">
+                        class="text-white bg-blue px-3 py-2 h-10 rounded-2xl  uppercase hover:bg-blue-hover transition duration-300 ease-in hover:border-blue border  -mx-3 font-bold ">
                     Voted
                 </button>
             @else
                 <button wire:click.prevent="vote"
-                    class="px-3 py-2 h-10 rounded-2xl  uppercase hover:bg-gray-600 transition duration-300 ease-in hover:border-gray-300 border hover:text-white -mx-3 font-bold bg-gray-400 ">
+                        class="px-3 py-2 h-10 rounded-2xl  uppercase hover:bg-gray-600 transition duration-300 ease-in hover:border-gray-300 border hover:text-white -mx-3 font-bold bg-gray-400 ">
                     Vote
                 </button>
             @endif
