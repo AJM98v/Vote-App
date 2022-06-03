@@ -8,9 +8,9 @@ use Livewire\Component;
 
 class CreateIdea extends Component
 {
-    public string $title;
-    public int $category = 1;
-    public string $description;
+    public  $title;
+    public  $category = 1;
+    public  $description;
 
 
    protected array $rules = [

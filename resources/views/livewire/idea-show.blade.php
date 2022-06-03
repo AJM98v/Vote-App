@@ -70,15 +70,12 @@
                                     @can("update",$idea)
                                         <li><a href="#"
                                                @click="$dispatch('edit-modal')"
-                                               class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Edit
-                                                Idea</a></li>
+                                               class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Edit Idea</a></li>
                                     @endcan
                                     <li><a href="#"
-                                           class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Delete
-                                            Idea</a></li>
+                                           class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Delete Idea</a></li>
                                     <li><a href="#"
-                                           class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Mark
-                                            As Spam</a></li>
+                                           class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Mark As Spam</a></li>
                                 </ul>
                             </div>
 

@@ -8,10 +8,10 @@ use Livewire\Component;
 
 class EditIdea extends Component
 {
-    public Idea $idea;
-    public int $category;
-    public string $title;
-    public string $description;
+    public  $idea;
+    public  $category;
+    public  $title;
+    public  $description;
 
     public function mount(Idea $idea)
     {
@@ -37,7 +37,6 @@ class EditIdea extends Component
         }else{
             abort('403',"You are Not Logged in");
         }
-
 
         $this->validate();
         $this->idea->update([
