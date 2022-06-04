@@ -36,6 +36,16 @@ class IdeaShow extends Component
         $this->hasVoted = $idea->isVotedByUser(auth()->user());
     }
 
+    public function resetSpam()
+    {
+        $this->idea->update([
+            'spam_report'=>"0"
+        ]);
+
+        $this->dispatchBrowserEvent('close-modal');
+
+    }
+
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|void

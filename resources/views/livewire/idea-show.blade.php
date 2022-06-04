@@ -53,7 +53,8 @@
                             <div class="relative"
                                  x-data="{
                             isOpen : false
-                            }" @keydown.esc.window="isOpen =false">
+                            }" @keydown.esc.window="isOpen =false"
+                            @close-modal.window="isOpen =false">
                                 <button @click="isOpen = !isOpen"
                                         class="relative bg-gray-200 hover:bg-gray-300 rounded-full h-7 px-2 transition duration-300 ease-in ">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500"
@@ -79,7 +80,14 @@
                                                class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Delete Idea</a></li>
                                     @endcan
                                     <li><a href="#"
+                                           @click.prevent="$dispatch('spam-modal')"
                                            class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Mark As Spam</a></li>
+                                     @auth
+                                         @if(auth()->user()->isAdmin())
+                                        <li><a href="#" wire:click.prevet="resetSpam()"
+                                           class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Not A Spam</a></li>
+                                            @endif
+                                        @endauth
                                 </ul>
                             </div>
 

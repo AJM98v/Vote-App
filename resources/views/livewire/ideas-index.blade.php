@@ -15,7 +15,11 @@
                 <option value="No Filter">No Filter</option>
                 <option value="Top Voted">Top Voted</option>
                 <option value="My Ideas">My Ideas</option>
-
+                @auth
+                    @if(auth()->user()->isAdmin())
+                        <option value="Spams">Most Spams</option>
+                    @endif
+                @endauth
             </select>
         </div>
         <div class="relative w-full md:w-2/3">
@@ -30,15 +34,15 @@
             <input type="search" placeholder="Find Ideas" wire:model.debounce.1000ms="search"
                    class="w-full px-4 py-2 pl-10 placeholder-gray-900 bg-white border-none rounded-xl">
 
-{{--            @if($results !== null)--}}
-{{--                <div class="absolute top-10 left-0 bg-white w-full p-3">--}}
-{{--                    <ul>--}}
-{{--                        @foreach($results as $result)--}}
-{{--                            <li class="m-2">{{$result->title}}</li>--}}
-{{--                        @endforeach--}}
-{{--                    </ul>--}}
-{{--                </div>--}}
-{{--            @endif--}}
+            {{--            @if($results !== null)--}}
+            {{--                <div class="absolute top-10 left-0 bg-white w-full p-3">--}}
+            {{--                    <ul>--}}
+            {{--                        @foreach($results as $result)--}}
+            {{--                            <li class="m-2">{{$result->title}}</li>--}}
+            {{--                        @endforeach--}}
+            {{--                    </ul>--}}
+            {{--                </div>--}}
+            {{--            @endif--}}
         </div>
 
 
