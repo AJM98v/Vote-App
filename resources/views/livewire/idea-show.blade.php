@@ -69,11 +69,15 @@
                                     class="absolute p-0 w-44 font-semibold text-sm shadow-lg   bg-white overflow-hidden text-left right-0 md:left-5  mt-1 md:mt-0 rounded-xl ">
                                     @can("update",$idea)
                                         <li><a href="#"
-                                               @click="$dispatch('edit-modal')"
+                                               @click.prevent="$dispatch('edit-modal')"
                                                class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Edit Idea</a></li>
                                     @endcan
-                                    <li><a href="#"
-                                           class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Delete Idea</a></li>
+
+                                    @can('delete',$idea)
+                                        <li><a href="#"
+                                               @click.prevent="$dispatch('delete-modal')"
+                                               class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Delete Idea</a></li>
+                                    @endcan
                                     <li><a href="#"
                                            class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Mark As Spam</a></li>
                                 </ul>
