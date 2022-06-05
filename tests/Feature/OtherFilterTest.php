@@ -68,7 +68,7 @@ class OtherFilterTest extends TestCase
         ]);
 
 
-        Livewire::withQueryParams(['category' => 'Category 1','filter'=>"Top Voted"])
+        Livewire::withQueryParams(['category' => 'Category 1', 'filter' => "Top Voted"])
             ->test(IdeasIndex::class)
             ->assertViewHas('ideas', fn($ideas) => $ideas->first()->title === 'Idea 2' && $ideas->first()->votes()->count() === 2);
 
@@ -121,11 +121,10 @@ class OtherFilterTest extends TestCase
             'description' => 'About Idea 4'
         ]);
 
-        Livewire::actingAs($user)->withQueryParams([ 'filter'=>"My Ideas"])
+        Livewire::actingAs($user)->withQueryParams(['filter' => "My Ideas"])
             ->test(IdeasIndex::class)
             ->assertViewHas('ideas',
-                fn($ideas) =>
-                    $ideas->count() === 3
+                fn($ideas) => $ideas->count() === 3
             );
     }
 
@@ -173,10 +172,65 @@ class OtherFilterTest extends TestCase
             'description' => 'About Idea 4'
         ]);
 
-        Livewire::withQueryParams(['category' => 'Category 1', 'filter'=>'My Ideas'])
+        Livewire::withQueryParams(['category' => 'Category 1', 'filter' => 'My Ideas'])
             ->test(IdeasIndex::class)
             ->assertViewHas('ideas',
                 fn($ideas) => $ideas->count() === 2);
+
+    }
+
+    /**
+     * @test
+     */
+
+    public function most_spam_filter_works_correctly(): void
+    {
+        $admin = User::factory()->create([
+            'email' => "abolfazljafari563@gmail.com"
+        ]);
+
+        $user = User::factory()->create();
+
+        $category = Category::factory()->create(['name' => 'Category 1']);
+        $status = Status::factory()->create(['name' => 'open']);
+
+        $ideaOne = Idea::factory()->create([
+            'user_id' => $user->id,
+            'category_id' => $category->id,
+            'status_id' => $status->id,
+            'title' => "Idea 1",
+            'description' => 'About Idea 1',
+            'spam_report' => "2"
+        ]);
+
+        $ideaTwo = Idea::factory()->create([
+            'user_id' => $user->id,
+            'category_id' => $category->id,
+            'status_id' => $status->id,
+            'title' => "Idea 2",
+            'description' => 'About Idea 2',
+            'spam_report' => "5"
+        ]);
+
+        $ideaThree = Idea::factory()->create([
+            'user_id' => $user->id,
+            'category_id' => $category->id,
+            'status_id' => $status->id,
+            'title' => "Idea 3",
+            'description' => 'About Idea 3',
+            'spam_report' => "1"
+        ]);
+
+
+        Livewire::actingAs($admin)->withQueryParams(['filter' => "Spams"])
+            ->test(IdeasIndex::class)
+            ->assertViewHas('ideas', function ($ideas) {
+                return $ideas->count() === 3
+                    && $ideas->first()->title === "Idea 2"
+                    && $ideas->get(1)->title === "Idea 1"
+                    && $ideas->get(2)->title === "Idea 3";
+            });
+
 
     }
 
