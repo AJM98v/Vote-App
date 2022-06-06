@@ -44,6 +44,8 @@ class IdeaShow extends Component
 
         $this->dispatchBrowserEvent('close-modal');
 
+        return redirect()->route('idea',$this->idea)->with('message', "All Spam Report Removed");
+
     }
 
 

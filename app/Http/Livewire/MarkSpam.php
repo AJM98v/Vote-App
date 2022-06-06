@@ -19,6 +19,9 @@ class MarkSpam extends Component
          $this->idea->spam_report++;
          $this->idea->save();
 
+         session()->flash("message","Thanks For Your Report");
+         $this->redirect(route('idea',$this->idea));
+
     }
 
     public function render()

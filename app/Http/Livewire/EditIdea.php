@@ -51,6 +51,8 @@ class EditIdea extends Component
 
         session()->flash('message', "This Idea Updated Successfully");
 
+        $this->redirect(route('idea',$this->idea));
+
 
 
 
