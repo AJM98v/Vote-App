@@ -19,7 +19,7 @@
                         <div class="hidden md:block">&bull;</div>
                         <div>{{$idea->category->name}}</div>
                         <div class="hidden md:block">&bull;</div>
-                        <div class="text-gray-800">3 comment</div>
+                        <div class="text-gray-800">{{$idea->comments->count()}} comment</div>
                         <div class="hidden md:block">&bull;</div>
 
                     </div>

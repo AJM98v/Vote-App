@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             StatusSeeder::class,
             IdeaSeeder::class,
-            VoteSeeder::class
+            VoteSeeder::class,
+            CommentSeeder::class
 
         ]);
 

@@ -89,6 +89,7 @@ class IdeasIndex extends Component
                     return $query->where("title",'like',"%".$this->search."%");
                 })
                 ->withCount('votes')
+                ->withCount('comments')
                 ->orderByDesc('id')
                 ->paginate('5'),
             'categories' => $categories,
