@@ -16,7 +16,7 @@ class IdeasIndex extends Component
     public $filter;
     public $search;
 
-    protected $queryString = ['status', 'category', 'filter' ,'search'];
+    protected $queryString = ['status', 'category', 'filter', 'search'];
 
 
     protected $listeners = ['queryStringStatus'];
@@ -60,7 +60,7 @@ class IdeasIndex extends Component
             'status' => $this->status,
             'category' => $this->category,
             'filter' => $this->filter,
-            'search'=>$this->search
+            'search' => $this->search
         ]);
     }
 
@@ -82,11 +82,11 @@ class IdeasIndex extends Component
                     return $query->orderByDesc('votes_count');
                 })->when(auth()->user() && $this->filter === "My Ideas", function ($query) {
                     return $query->where("user_id", auth()->user()->id);
-                })->when($this->filter ==="Spams", function ($query){
+                })->when($this->filter === "Spams", function ($query) {
                     return $query->where("spam_report", ">", "0")->orderByDesc('spam_report');
                 })
-                ->when($this->search && strlen($this->search) >= 3 , function ($query){
-                    return $query->where("title",'like',"%".$this->search."%");
+                ->when($this->search && strlen($this->search) >= 3, function ($query) {
+                    return $query->where("title", 'like', "%" . $this->search . "%");
                 })
                 ->withCount('votes')
                 ->withCount('comments')
