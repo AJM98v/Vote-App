@@ -6,4 +6,7 @@
         @livewire('idea-comment',['comment'=>$comment ,"ideaUserId"=>$idea->user_id])
     @endforeach
 
+    {{$comments->links()}}
+
+
 </div> <!-- end comments-container-->

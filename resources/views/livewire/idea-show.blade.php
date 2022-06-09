@@ -71,25 +71,21 @@
                                     @can("update",$idea)
                                         <li><a href="#"
                                                @click.prevent="$dispatch('edit-modal')"
-                                               class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Edit
-                                                Idea</a></li>
+                                               class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Edit Idea</a></li>
                                     @endcan
 
                                     @can('delete',$idea)
                                         <li><a href="#"
                                                @click.prevent="$dispatch('delete-modal')"
-                                               class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Delete
-                                                Idea</a></li>
+                                               class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Delete Idea</a></li>
                                     @endcan
                                     <li><a href="#"
                                            @click.prevent="$dispatch('spam-modal')"
-                                           class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Mark
-                                            As Spam</a></li>
+                                           class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Mark As Spam</a></li>
                                     @auth
                                         @if(auth()->user()->isAdmin())
                                             <li><a href="#" wire:click.prevet="resetSpam()"
-                                                   class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Not
-                                                    A Spam</a></li>
+                                                   class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Not A Spam</a></li>
                                         @endif
                                     @endauth
                                 </ul>

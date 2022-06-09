@@ -42,6 +42,10 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
  * @method static \Illuminate\Database\Eloquent\Builder|Idea whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Idea withUniqueSlugConstraints(\Illuminate\Database\Eloquent\Model $model, string $attribute, array $config, string $slug)
  * @mixin \Eloquent
+ * @property int|null $spam_report
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Comment[] $comments
+ * @property-read int|null $comments_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Idea whereSpamReport($value)
  */
 class Idea extends Model
 {

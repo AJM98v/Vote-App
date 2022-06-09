@@ -2,30 +2,29 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Comment;
 use App\Models\Idea;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class IdeaComments extends Component
 {
 
+
     public $idea;
-    public $comments ;
 
-
-    public function mount(Idea $idea )
+    public function mount(Idea $idea)
     {
         $this->idea = $idea;
-        $this->comments = $idea->comments;
 
 
     }
 
 
-
     public function render()
     {
         return view('livewire.idea-comments', [
-            'comments'=> $this->comments
+            'comments' => Comment::with("user")->where("idea_id", $this->idea->id)->paginate("10")->withQueryString()
         ]);
     }
 }
