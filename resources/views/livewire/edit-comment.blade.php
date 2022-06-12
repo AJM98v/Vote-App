@@ -3,13 +3,15 @@
             editModal : false
     }"
     x-cloak
-    @edit-modal.window="editModal=true"
+    @edit-comment-modal.window="
+    editModal=true
+    $nextTick(()=> $refs.commentBody.focus())
+    "
     @keyup.esc.window="editModal = false"
-
-    @close-modal.window = "editModal = false"
+    @close-comment-modal.window = "editModal = false"
     x-transition.origin.bottom.duration.300ms.delay.75ms
     class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true" x-show="editModal"
-    >
+>
     <!--
       Background backdrop, show/hide based on modal state.
 
@@ -20,7 +22,7 @@
         From: "opacity-100"
         To: "opacity-0"
     -->
-    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity "></div>
 
     <div class="fixed  inset-0 overflow-y-auto">
         <div class="flex items-end justify-center min-h-full p-4 text-center sm:p-0">
@@ -44,38 +46,14 @@
                               d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
                 </div>
-                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                    <h3 class="text-center text-lg font-medium text-gray-800">Edit Idea</h3>
-                    <p class="text-xxs text-center text-gray-500 my-3 leading-5 px-2">You Have One Hour to Edit Your
-                        Idea After
-                        Creating it </p>
-                    <form wire:submit.prevent='editIdea()' method="post" class="p-4 space-y-4">
+                <div class="bg-white  px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <h3 class="text-center text-lg font-medium text-gray-800">Edit Comment</h3>
+                    <form wire:submit.prevent='editComment()' method="post" class="p-4 space-y-4">
                         <div>
-                            <input type="text" name="title" wire:model.defer='title'
-                                   class="w-full px-4 py-2 text-sm placeholder-gray-900 bg-gray-100 border-none rounded-xl"
-                                   placeholder="Your Idea">
-
-                            @error('title')
-                            <p class="mt-2 text-xs text-red">{{ $message }}</p>
-                            @enderror
-
-                        </div>
-                        <div>
-                            <select name="category_add" id="category_add" wire:model.defer='category'
-                                    class="w-full px-4 py-2 text-sm placeholder-gray-900 bg-gray-100 border-none rounded-xl">
-                                                                @foreach ($categories as $category)
-                                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                                                @endforeach
-                            </select>
-                                                        @error('category')
-                                                        <p class="mt-2 text-xs text-red">{{ $message }}</p>
-                                                        @enderror
-                        </div>
-                        <div>
-            <textarea name="idea" id="idea" wire:model.defer='description'
+            <textarea x-ref="commentBody" name="idea" id="idea" wire:model='commentText'
                       class="w-full px-4 py-2 placeholder-gray-900 bg-gray-100 border-none rounded-xl"
-                      placeholder="Describe Your Idea" cols="30" rows="4"></textarea>
-                            @error('description')
+                      placeholder="edit your Comment.." cols="30" rows="4"></textarea>
+                            @error('comment')
                             <p class="mt-2 text-xs text-red">{{ $message }}</p>
                             @enderror
                         </div>

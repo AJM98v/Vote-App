@@ -4,9 +4,14 @@
 
     @foreach($comments as $comment)
         @livewire('idea-comment',['comment'=>$comment ,"ideaUserId"=>$idea->user_id])
+
     @endforeach
 
     {{$comments->links()}}
+
+    @auth
+        @livewire("edit-comment")
+    @endauth
 
 
 </div> <!-- end comments-container-->
