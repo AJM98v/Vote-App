@@ -57,10 +57,12 @@
                                            class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Edit Comment</a></li>
                                     @endcan
 
-                                    <li><a href="#"
-                                           @click.prevent="$dispatch('delete-comment-modal')"
-                                           class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Delete Comment</a></li>
-
+                                    @can('delete',$comment)
+                                            <li><a href="#"
+                                                   @click.prevent="$dispatch('delete-comment-modal')"
+                                                   wire:click.prevent="$emit('setDeleteComment',{{$comment->id}})"
+                                                   class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Delete Comment</a></li>
+                                    @endcan
                                     <li><a href="#"
                                            @click.prevent="$dispatch('spam-modal')"
                                            class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Mark As Spam</a></li>
@@ -126,17 +128,19 @@
                                 x-show="isOpen" x-transition.origin.top.left.duration.200ms x-cloak
                                 class="absolute p-0 w-44 z-10 font-semibold text-sm shadow-lg   bg-white overflow-hidden text-left right-0 md:left-5  mt-1 md:mt-0 rounded-xl ">
 
+                                @can('update',$comment)
                                     <li><a href="#"
                                            @click.prevent="$dispatch('edit-comment-modal')"
                                            wire:click.prevent="$emit('setEditComment' , {{$comment->id}})"
                                            class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Edit Comment</a></li>
+                                @endcan
 
-
+                                @can('delete',$comment)
                                     <li><a href="#"
                                            @click.prevent="$dispatch('delete-comment-modal')"
-
+                                           wire:click.prevent="$emit('setDeleteComment',{{$comment->id}})"
                                            class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Delete Comment</a></li>
-
+                                    @endcan
                                 <li><a href="#"
                                        @click.prevent="$dispatch('spam-modal')"
                                        class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Mark As Spam</a></li>

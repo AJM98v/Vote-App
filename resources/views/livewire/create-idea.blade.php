@@ -56,7 +56,7 @@
              x-transition:leave="transition ease-in duration-300"
              x-transition:leave-start="opacity-100 scale-100"
              x-transition:leave-end="opacity-0 scale-90"
-             class="fixed px-7 py-3 text-sm z-30 text-center text-white bg-teal-800 bottom-5 right-4 rounded-2xl drop-shadow font-semibold">
+             class="fixed px-7 py-3 text-sm z-40 text-center text-white bg-teal-800 bottom-5 right-4 rounded-2xl drop-shadow font-semibold">
             {{ session('message') }}
         </div>
     @endif

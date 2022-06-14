@@ -17,7 +17,12 @@ class IdeaComments extends Component
     {
         $this->idea = $idea;
 
+    }
 
+    protected  $listeners = ['deletedComment'];
+
+    public function deletedComment(){
+        return redirect()->route('idea',$this->idea)->with('message', 'comment Deleted Successfully');
     }
 
 
