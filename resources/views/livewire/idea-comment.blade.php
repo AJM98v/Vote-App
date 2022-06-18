@@ -64,7 +64,8 @@
                                                    class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Delete Comment</a></li>
                                     @endcan
                                     <li><a href="#"
-                                           @click.prevent="$dispatch('spam-modal')"
+                                           @click.prevent="$dispatch('spam-comment-modal')"
+                                           wire:click.prevent="$emit('setSpamComment',{{$comment->id}})"
                                            class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Mark As Spam</a></li>
                                     @auth
                                         @if(auth()->user()->isAdmin())
@@ -142,7 +143,8 @@
                                            class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Delete Comment</a></li>
                                     @endcan
                                 <li><a href="#"
-                                       @click.prevent="$dispatch('spam-modal')"
+                                       @click.prevent="$dispatch('spam-comment-modal')"
+                                       wire:click.prevent="$emit('setSpamComment',{{$comment->id}})"
                                        class="hover:bg-gray-200 px-5 py-3 block transition w-full duration-200 ease-in">Mark As Spam</a></li>
                                 @auth
                                     @if(auth()->user()->isAdmin())

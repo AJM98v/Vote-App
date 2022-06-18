@@ -17,6 +17,15 @@ class IdeaComment extends Component
         $this->comment->refresh();
     }
 
+    public function resetSpam()
+    {
+        $this->comment->spam_report = 0 ;
+        $this->comment->save();
+
+        $this->dispatchBrowserEvent('close-modal');
+
+    }
+
     public function mount(Comment $comment,$ideaUserId){
         $this->comment = $comment;
         $this->ideaUserId = $ideaUserId;

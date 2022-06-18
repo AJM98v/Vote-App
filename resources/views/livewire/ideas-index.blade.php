@@ -18,6 +18,7 @@
                 @auth
                     @if(auth()->user()->isAdmin())
                         <option value="Spams">Most Spams</option>
+                        <option value="Spam Comment">Spam Comments</option>
                     @endif
                 @endauth
             </select>

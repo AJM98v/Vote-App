@@ -69,7 +69,7 @@ class DeleteCommentTest extends TestCase
      * @test
      */
 
-    public function delete_comment_is_set_correctly() :void
+    public function delete_comment_is_set_correctly(): void
     {
         $user = User::factory()->create();
 
@@ -85,15 +85,14 @@ class DeleteCommentTest extends TestCase
         ]);
 
         $comment = Comment::factory()->create([
-            'user_id'=>$user->id,
-            'idea_id'=>$idea->id
+            'user_id' => $user->id,
+            'idea_id' => $idea->id
         ]);
 
         Livewire::actingAs($user)
             ->test(DeleteComment::class)
-            ->call("setDeleteComment" ,$comment)
-            ->assertSet("comment" ,$comment);
-
+            ->call("setDeleteComment", $comment)
+            ->assertSet("comment", $comment);
 
 
     }
@@ -119,19 +118,19 @@ class DeleteCommentTest extends TestCase
         ]);
 
         $comment = Comment::factory()->create([
-            'user_id'=>$user->id,
-            'idea_id'=>$idea->id
+            'user_id' => $user->id,
+            'idea_id' => $idea->id
         ]);
 
         Livewire::actingAs($user)
             ->test(DeleteComment::class)
-            ->call("setDeleteComment" , $comment)
+            ->call("setDeleteComment", $comment)
             ->assertSet('comment', $comment)
             ->call('deleteComment')
             ->assertEmitted('deletedComment');
 
         $this->assertDatabaseMissing('comments', [
-           'body'=>$comment->body
+            'body' => $comment->body
         ]);
 
     }
@@ -157,18 +156,17 @@ class DeleteCommentTest extends TestCase
         ]);
 
         $comment = Comment::factory()->create([
-            'user_id'=>$user->id,
-            'idea_id'=>$idea->id
+            'user_id' => $user->id,
+            'idea_id' => $idea->id
         ]);
 
         Livewire::actingAs($userB)
             ->test(DeleteComment::class, [
                 'comment' => $comment
             ])
-            ->call('setDeleteComment' ,$comment)
+            ->call('setDeleteComment', $comment)
             ->call("deleteComment")
             ->assertStatus(403);
-
 
     }
 
@@ -192,13 +190,13 @@ class DeleteCommentTest extends TestCase
         ]);
 
         $comment = Comment::factory()->create([
-            'user_id'=>$user->id,
-            'idea_id'=>$idea->id
+            'user_id' => $user->id,
+            'idea_id' => $idea->id
         ]);
 
         Livewire::actingAs($user)
             ->test(IdeaComment::class, [
-                'comment'=>$comment ,"ideaUserId"=>$idea->user_id
+                'comment' => $comment, "ideaUserId" => $idea->user_id
             ])
             ->assertSeeText("Delete Comment");
 
@@ -224,12 +222,12 @@ class DeleteCommentTest extends TestCase
         ]);
 
         $comment = Comment::factory()->create([
-            'user_id'=>$user->id,
-            'idea_id'=>$idea->id
+            'user_id' => $user->id,
+            'idea_id' => $idea->id
         ]);
 
         Livewire::test(IdeaComment::class, [
-            'comment'=>$comment ,"ideaUserId"=>$idea->user_id
+            'comment' => $comment, "ideaUserId" => $idea->user_id
         ])
             ->assertDontSeeText("Delete Comment");
 

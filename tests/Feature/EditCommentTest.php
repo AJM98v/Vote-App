@@ -37,7 +37,6 @@ class EditCommentTest extends TestCase
         ]);
 
 
-
         $this->actingAs($user)->get(route('idea', $idea))
             ->assertSeeLivewire("edit-comment");
 
@@ -86,8 +85,8 @@ class EditCommentTest extends TestCase
         ]);
 
         $comment = Comment::factory()->create([
-            'idea_id'=>$idea->id,
-            'user_id'=>$user->id
+            'idea_id' => $idea->id,
+            'user_id' => $user->id
         ]);
 
         Livewire::actingAs($user)
@@ -98,8 +97,8 @@ class EditCommentTest extends TestCase
             ->set('commentText', "This is Update Comment")
             ->call('editComment');
 
-        $this->assertDatabaseHas('comments',[
-            'body'=>"This is Update Comment"
+        $this->assertDatabaseHas('comments', [
+            'body' => "This is Update Comment"
         ]);
     }
 
@@ -125,20 +124,20 @@ class EditCommentTest extends TestCase
         ]);
 
         $comment = Comment::factory()->create([
-            'idea_id'=>$idea->id,
-            'user_id'=>$user->id
+            'idea_id' => $idea->id,
+            'user_id' => $user->id
         ]);
 
         Livewire::actingAs($userB)
-                ->test(EditComment::class, [
-                    'comment' => $comment
-                ])
-                ->call('setEditComment', $comment->id)
-                ->set('commentText', "This is Update Comment")
-                ->call('editComment');
+            ->test(EditComment::class, [
+                'comment' => $comment
+            ])
+            ->call('setEditComment', $comment->id)
+            ->set('commentText', "This is Update Comment")
+            ->call('editComment');
 
         $this->assertDatabaseMissing('comments', [
-            'body'=>"This is Update Comment"
+            'body' => "This is Update Comment"
         ]);
     }
 
@@ -147,7 +146,7 @@ class EditCommentTest extends TestCase
      * @test
      */
 
-    public function edit_comment_is_set_correctly() :void
+    public function edit_comment_is_set_correctly(): void
     {
         $user = User::factory()->create();
 
@@ -163,19 +162,16 @@ class EditCommentTest extends TestCase
         ]);
 
         $comment = Comment::factory()->create([
-            'user_id'=>$user->id,
-            'idea_id'=>$idea->id
+            'user_id' => $user->id,
+            'idea_id' => $idea->id
         ]);
 
         Livewire::actingAs($user)
             ->test(EditComment::class)
-            ->call("setEditComment" ,$comment->id)
-            ->assertSet("commentText" ,$comment->body);
-
-
+            ->call("setEditComment", $comment->id)
+            ->assertSet("commentText", $comment->body);
 
     }
-
 
 
     /**
@@ -198,14 +194,14 @@ class EditCommentTest extends TestCase
         ]);
 
         $comment = Comment::factory()->create([
-            'user_id'=>$user->id,
-            'idea_id'=>$idea->id
+            'user_id' => $user->id,
+            'idea_id' => $idea->id
         ]);
 
         Livewire::actingAs($user)
             ->test(EditComment::class)
-            ->call("setEditComment" ,$comment->id)
-            ->set("commentText" , "")
+            ->call("setEditComment", $comment->id)
+            ->set("commentText", "")
             ->call('editComment')
             ->assertHasErrors(['commentText'])
             ->set('commentText', "ac")
@@ -234,13 +230,13 @@ class EditCommentTest extends TestCase
         ]);
 
         $comment = Comment::factory()->create([
-            'user_id'=>$user->id,
-            'idea_id'=>$idea->id
+            'user_id' => $user->id,
+            'idea_id' => $idea->id
         ]);
 
         Livewire::actingAs($user)
             ->test(IdeaComment::class, [
-                'comment'=>$comment ,"ideaUserId"=>$idea->user_id
+                'comment' => $comment, "ideaUserId" => $idea->user_id
             ])
             ->assertSeeText("Edit Comment");
 
@@ -266,13 +262,13 @@ class EditCommentTest extends TestCase
         ]);
 
         $comment = Comment::factory()->create([
-            'user_id'=>$user->id,
-            'idea_id'=>$idea->id
+            'user_id' => $user->id,
+            'idea_id' => $idea->id
         ]);
 
 
         Livewire::test(IdeaComment::class, [
-            'comment'=>$comment ,"ideaUserId"=>$idea->user_id
+            'comment' => $comment, "ideaUserId" => $idea->user_id
         ])
             ->assertDontSeeText("Edit Comment");
 

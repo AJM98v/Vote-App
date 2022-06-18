@@ -12,6 +12,7 @@
     @auth
         @livewire("edit-comment")
         @livewire("delete-comment")
+        @livewire('spam-report-comments')
     @endauth
 
 
