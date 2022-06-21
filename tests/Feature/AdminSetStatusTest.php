@@ -137,4 +137,89 @@ class AdminSetStatusTest extends TestCase
     }
 
 
+    /**
+     *@test
+     */
+
+    public function can_set_status_correctly_no_comment() :void
+    {
+        $user = User::factory()->create(['email' => "abolfazljafari563@gmail.com"]);
+
+        $category = Category::factory()->create(['name' => "Category 1"]);
+
+        $status = Status::factory()->create(['name' => 'open' , "id"=>1]);
+        $statusInProgress = Status::factory()->create(['name' => 'InProgress' , "id"=>4]);
+
+        $idea = Idea::factory()->create([
+            'user_id' => $user->id,
+            'category_id' => $category->id,
+            'status_id' => $status->id,
+            'title' => "Idea 1",
+            'description' => "About Idea 1"
+        ]);
+
+        Livewire::actingAs($user)
+            ->test(SetStatus::class,[
+                'idea'=>$idea
+            ])
+            ->set('status',$statusInProgress->id)
+            ->call('setStatus')
+            ->assertEmitted("statusUpdateEvent");
+
+        $this->assertDatabaseHas('ideas',[
+            "id"=>$idea->id,
+            'status_id'=>$statusInProgress->id
+        ]);
+
+        $this->assertDatabaseHas('comments' ,[
+            'body'=>"No Comment Was Added",
+            "status_id"=>$statusInProgress->id,
+            'is_status_update'=>1
+        ]);
+    }
+
+
+    /**
+     *@test
+     */
+
+    public function can_set_status_correctly_with_comment() :void
+    {
+        $user = User::factory()->create(['email' => "abolfazljafari563@gmail.com"]);
+
+        $category = Category::factory()->create(['name' => "Category 1"]);
+
+        $status = Status::factory()->create(['name' => 'open' , "id"=>1]);
+        $statusInProgress = Status::factory()->create(['name' => 'InProgress' , "id"=>4]);
+
+        $idea = Idea::factory()->create([
+            'user_id' => $user->id,
+            'category_id' => $category->id,
+            'status_id' => $status->id,
+            'title' => "Idea 1",
+            'description' => "About Idea 1"
+        ]);
+
+        Livewire::actingAs($user)
+            ->test(SetStatus::class,[
+                'idea'=>$idea
+            ])
+            ->set('status',$statusInProgress->id)
+            ->set('body',"this is a test comment")
+            ->call('setStatus')
+            ->assertEmitted("statusUpdateEvent");
+
+        $this->assertDatabaseHas('ideas',[
+            "id"=>$idea->id,
+            'status_id'=>$statusInProgress->id
+        ]);
+
+        $this->assertDatabaseHas('comments' ,[
+            'body'=>"this is a test comment",
+            "status_id"=>$statusInProgress->id,
+            'is_status_update'=>1
+        ]);
+    }
+
+
 }

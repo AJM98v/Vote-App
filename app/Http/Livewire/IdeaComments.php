@@ -19,17 +19,23 @@ class IdeaComments extends Component
 
     }
 
-    protected  $listeners = ['deletedComment'];
+    protected  $listeners = ['deletedComment' , "statusUpdate"];
 
     public function deletedComment(){
         return redirect()->route('idea',$this->idea)->with('message', 'comment Deleted Successfully');
+    }
+
+    public function statusUpdate()
+    {
+        return redirect()->route('idea',$this->idea)->with('message', 'Status Change Successfully');
+
     }
 
 
     public function render()
     {
         return view('livewire.idea-comments', [
-            'comments' => Comment::with("user")->where("idea_id", $this->idea->id)->paginate("10")->withQueryString()
+            'comments' => Comment::with("user", "status")->where("idea_id", $this->idea->id)->paginate("10")->withQueryString()
         ]);
     }
 }

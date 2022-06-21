@@ -21,8 +21,9 @@ class CommentFactory extends Factory
         return [
             //
             "body"=>$this->faker->realText,
-            'user_id'=> $this->faker->numberBetween(1,20),
-            'idea_id'=>$this->faker->numberBetween(1,14)
+            'user_id'=> $this->faker->numberBetween(1,19),
+            'idea_id'=>$this->faker->numberBetween(1,30),
+            'status_id'=>$this->faker->numberBetween(1,5)
         ];
     }
 }

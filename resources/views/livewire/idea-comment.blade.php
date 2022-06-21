@@ -1,6 +1,6 @@
-@if($comment->user->isAdmin())
+@if($comment->is_status_update)
             <div
-                class="comment isAdmin ml-3 md:ml-0 mt-5 bg-white border border-blue rounded-xl flex shadow-md md:before:absolute relative md:before:content-['']  md:before:-left-14 md:before:translate-y-[-50%] md:before:top-[50%] md:before:w-8 md:before:rounded-full md:before:h-8 md:before:bg-purple md:before:border-4 md:before:border-white md:before:block">
+                class="comment {{"status"."-".Str::kebab($comment->status->name)}} isAdmin ml-3 md:ml-0 mt-5 bg-white border border-blue rounded-xl flex shadow-md md:before:absolute relative md:before:content-['']  md:before:-left-14 md:before:translate-y-[-50%] md:before:top-[50%] md:before:w-8 md:before:rounded-full md:before:h-8 md:before:border-4 md:before:border-white md:before:block">
                 <div class="flex flex-1 px-4 py-6 ">
                     <div class="flex-none h-fit">
                         <a href="#" class="">
@@ -13,7 +13,7 @@
 
                     <div class="mx-4 w-full">
                         <h4 class="text-xl font-semibold ">
-                            <a href="#" class="hover:underline">Random title Goes here</a>
+                            <a href="#" class="hover:underline">Status Changed To "{{$comment->status->name}}"</a>
                         </h4>
                         <div class="text-gray-600 mt-4 line-clamp-3">{{$comment->body}}
                         </div>

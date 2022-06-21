@@ -51,7 +51,7 @@
                 </div>
             </div>
             <div>
-                             <textarea name="update_comment" id="update_comment" cols="30" rows="3"
+                             <textarea wire:model="body" name="update_comment" id="update_comment" cols="30" rows="3"
                                        class="text-sm bg-gray-200 rounded-xl focus:ring-0 placeholder-gray-700 outline-none  focus:outline-none focus:border-none p-4 border-none w-full "
                                        placeholder="Add a Update Comment(Optional)"></textarea>
 

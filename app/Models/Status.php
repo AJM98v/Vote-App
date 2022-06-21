@@ -38,6 +38,11 @@ class Status extends Model
         return $this->hasMany(Idea::class);
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
     /**
      * @return array
      */

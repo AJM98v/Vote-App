@@ -35,7 +35,9 @@ class Comment extends Model
     protected $fillable = [
         'idea_id',
         'user_id',
-        'body'
+        'body',
+        'status_id',
+        'is_status_update'
     ];
 
     public function user()
@@ -45,6 +47,11 @@ class Comment extends Model
 
     public function idea()
     {
-        return $this->belongsTo(Idea::class );
+        return $this->belongsTo(Idea::class);
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
     }
 }

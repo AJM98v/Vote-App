@@ -4,4 +4,24 @@
 
 [x-cloak] { display: none !important; }
 
+.status-open::before{
+    background-color: #000 !important;
+}
+
+.status-considering::before{
+    background-color: #8b60ed !important;
+}
+
+.status-in-progress::before{
+    background-color: #ffc73c !important;
+}
+
+.status-implemented::before{
+    background-color: #1aab8b !important;
+}
+
+.status-close::before{
+    background-color: #ec454f !important;
+}
+
 

@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Jobs\NotifyVoters;
 use App\Mail\IdeaStatusUpdate;
+use App\Models\Comment;
 use App\Models\Idea;
 use App\Models\Status;
 use Illuminate\Support\Facades\Mail;
@@ -15,6 +16,7 @@ class SetStatus extends Component
     public $idea;
     public $status;
     public $notify;
+    public $body;
 
     public function mount(Idea $idea)
     {
@@ -43,6 +45,15 @@ class SetStatus extends Component
             }
 
         }
+        Comment::create([
+            'user_id'=>auth()->id(),
+            'idea_id'=>$this->idea->id,
+            'status_id'=>$this->status,
+            'body'=> $this->body ?: "No Comment Was Added",
+            'is_status_update'=>1
+        ]);
+
+        $this->emit('statusUpdate');
 
     }
 
