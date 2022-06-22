@@ -42,8 +42,7 @@
             <h4 class="text-xl font-semibold ">
                 <a href="{{route('idea', $idea)}}" class="idea-link hover:underline">{{$idea->title}}</a>
             </h4>
-            <div class="text-gray-600 mt-4 line-clamp-3 px-4 md:px-2">Lorem ipsum dolor sit amet,
-                {{$idea->description}}
+            <div class="text-gray-600 mt-4 line-clamp-3 px-4 md:px-2">{{$idea->description}}
             </div>
             <div
                 class="flex justify-between md:items-center mt-5 flex-col md:flex-row space-y-4 md:space-y-0 ">

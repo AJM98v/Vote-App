@@ -36,7 +36,7 @@ class CreateIdea extends Component
                 'title' => $this->title,
                 'category_id' => $this->category,
                 'description' => $this->description,
-                'user_id' => 1,
+                'user_id' => auth()->user()->id,
                 'status_id' => 1
             ]);
 

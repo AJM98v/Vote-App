@@ -7,7 +7,7 @@
                             <img src="{{$comment->user->getAvatar()}}" alt="avatar"
                                  class="w-14 h-14 rounded-2xl">
                         </a>
-                        <h4 class="uppercase text-blue text-xxs text-center font-bold mt-1">Admin</h4>
+                            <h4 class="uppercase text-blue text-xxs text-center font-bold mt-1">Admin</h4>
                     </div>
 
 
@@ -87,10 +87,14 @@
     <div
         class="comment mt-5 bg-white rounded-xl  flex">
         <div class="flex flex-1 px-4 py-6 ">
-            <a href="#" class="flex-none h-fit">
-                <img src="{{$comment->user->getAvatar()}}" alt="avatar"
-                     class="w-14 h-14 rounded-2xl">
-            </a>
+            <div class="flex-none h-fit">
+                <a href="#" class="">
+                    <img src="{{$comment->user->getAvatar()}}" alt="avatar"
+                         class="w-14 h-14 rounded-2xl">
+                </a>
+
+            </div>
+
             <div class="mx-4 w-full">
                 {{--                    <h4 class="text-xl font-semibold ">--}}
                 {{--                        <a href="#" class="hover:underline">Random title Goes here</a>--}}
