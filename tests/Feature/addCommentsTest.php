@@ -7,8 +7,10 @@ use App\Models\Category;
 use App\Models\Idea;
 use App\Models\Status;
 use App\Models\User;
+use App\Notifications\CommentAdded;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Notification;
 use Livewire\Livewire;
 use Tests\TestCase;
 
@@ -119,6 +121,7 @@ class addCommentsTest extends TestCase
 
     /**
      * @test
+     * @throws \Exception
      */
     public function add_comment_works(): void
     {
@@ -136,6 +139,11 @@ class addCommentsTest extends TestCase
             "status_id" => $status->id
         ]);
 
+        Notification::fake();
+
+        Notification::assertNothingSent();
+
+
         Livewire::actingAs($user)
             ->test(AddComment::class, [
                 'idea' => $idea
@@ -143,9 +151,14 @@ class addCommentsTest extends TestCase
             ->set('comment', "this is my First comment")
             ->call("addComment");
 
+
+        Notification::assertSentTo([$idea->user],CommentAdded::class);
+
         $this->assertDatabaseHas('comments', [
             'body' => "this is my First comment"
         ]);
+
+
     }
 
 
