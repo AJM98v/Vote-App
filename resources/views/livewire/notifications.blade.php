@@ -25,7 +25,7 @@
         @if($count !== 0 &&  !$isLoading)
       @foreach($notifications as $notification)
         <li class=" px-5 py-2 cursor-pointer hover:bg-gray-100 transition-all ease-in duration-300">
-           <a href="{{route('idea', $notification->data['idea_slug'])}}" class="flex">
+           <a href="{{route('idea', $notification->data['idea_slug'])}}" class="flex" wire:click.prevent="markAsRead('{{$notification->id}}')">
                <img src="{{$notification->data['user_avatar']}}" alt="avatar" class="rounded-xl w-10 h-10">
                <div class="ml-4">
                    <div class="text-gray-800 line-clamp-5">
@@ -42,7 +42,7 @@
         @endforeach
 
         <li class="border-t border-gray-600 hover:text-white hover:bg-gray-600 flex space-x-2 items-center justify-center text-sm w-full py-2  cursor-pointer transition-all ease-in duration-300">
-            <button >Mark All As Read</button>
+            <button  wire:click.prevent="markAllAsRead" @click.prevent="isOpen =false">Mark All As Read</button>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
             </svg>
