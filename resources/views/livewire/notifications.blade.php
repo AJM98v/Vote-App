@@ -1,4 +1,4 @@
-<div class="relative"
+<div  wire:poll="getCount" class="relative"
      x-data="{
                             isOpen : false
                             }" @keydown.esc.window="isOpen =false">

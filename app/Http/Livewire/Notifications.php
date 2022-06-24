@@ -21,6 +21,11 @@ class Notifications extends Component
         $this->isLoading = false;
     }
 
+    public function getCount()
+    {
+        $this->count = auth()->user()->unreadNotifications->count();
+    }
+
     public function mount()
     {
         $this->notifications = collect([]);
