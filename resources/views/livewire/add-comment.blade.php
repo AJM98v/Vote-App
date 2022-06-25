@@ -45,10 +45,10 @@
         @else
             <div class="flex flex-col items-center justify-center px-4 py-6 space-y-3">
                 <h5>For Replay you must have Register</h5>
-                <div class="mx-auto ">
-                    <a href="{{ route('login') }}"
+                <div class="mx-auto">
+                    <a href="{{ route('login') }}" wire:click.prevent="redirectToLogin"
                         class="px-5 py-2 text-white transition-all duration-200 ease-in shadow-md rounded-xl drop-shadow bg-blue hover:bg-blue-hover">Login</a>
-                    <a href="{{ route('register') }}"
+                    <a href="{{ route('register') }}" wire:click.prevent="redirectToRegister"
                         class="px-5 py-2 text-white transition-all duration-200 ease-in shadow-md rounded-xl drop-shadow bg-blue hover:bg-blue-hover">Register</a>
                 </div>
             </div>

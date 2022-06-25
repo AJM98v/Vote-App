@@ -62,6 +62,7 @@
 <main class="mx-auto flex container max-w-5xl flex-col md:flex-row">
     <div class="max-w-xs mx-auto md:mr-10">
         <div class="bg-white border-2  border-blue rounded-xl mt-16 border-opacity-40 md:sticky top-10">
+            @auth
             <div class="text-center px-6 py-2 pt-6">
                 <h3 class="font-semibold text-base">Add a Idea</h3>
 
@@ -73,6 +74,19 @@
             @livewire('create-idea')
 
 
+            @else
+                <div class="text-center px-6 py-2 pt-6">
+                    <h3 class="font-semibold text-base">Add a Idea</h3>
+
+                    <p class="text-xs mt-4 ">You Have to Logged in For Adding a Idea</p>
+                </div>
+
+            <div class="flex justify-evenly w-full my-4">
+                <a href="{{route('register')}}" class="rounded bg-gray-600 text-white text-center py-2 w-1/3  shadow-sm shadow-gray-500 hover:bg-gray-700 duration-300 transition-all ease-in">Register</a>
+                <a href="{{route('login')}}" class="rounded text-white text-center py-2 w-1/3 bg-blue shadow-sm shadow-gray-500  hover:bg-blue-hover duration-300 transition-all ease-in">Login</a>
+
+            </div>
+            @endauth
         </div>
     </div>
     <div class="md:max-w-2xl w-full px-4 md:px-0">
