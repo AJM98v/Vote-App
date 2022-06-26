@@ -15,7 +15,7 @@
                         <h4 class="text-xl font-semibold ">
                             <a href="#" class="hover:underline">Status Changed To "{{$comment->status->name}}"</a>
                         </h4>
-                        <div class="text-gray-600 mt-4 line-clamp-3">{{$comment->body}}
+                        <div class="text-gray-600 mt-4 line-clamp-3">{!! nl2br(e($comment->body)) !!}
                         </div>
                         <div class="flex justify-between items-center mt-5">
                             <div class="flex items-center text-xs text-gray-400 font-semibold space-x-2">

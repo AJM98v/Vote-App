@@ -32,27 +32,22 @@ class StatusTest extends TestCase
         $statusImplemented = Status::factory()->create(['name'=>'Implemented']);
 
 
-        Idea::factory()->create([
+        Idea::factory()->count(3)->create([
             'user_id'=>$user->id,
             'category_id'=>$category->id,
             'status_id'=>$statusOpen->id
         ]);
-        Idea::factory()->create([
+        Idea::factory()->count(4)->create([
             'user_id'=>$user->id,
             'category_id'=>$category->id,
             'status_id'=>$statusConsidering->id
         ]);
-        Idea::factory()->create([
+        Idea::factory()->count(3)->create([
             'user_id'=>$user->id,
             'category_id'=>$category->id,
             'status_id'=>$statusClosed->id
         ]);
-        Idea::factory()->create([
-            'user_id'=>$user->id,
-            'category_id'=>$category->id,
-            'status_id'=>$statusConsidering->id
-        ]);
-        Idea::factory()->create([
+        Idea::factory()->count(4)->create([
             'user_id'=>$user->id,
             'category_id'=>$category->id,
             'status_id'=>$statusImplemented->id
@@ -62,52 +57,6 @@ class StatusTest extends TestCase
             'category_id'=>$category->id,
             'status_id'=>$statusInProgress->id
         ]);
-        Idea::factory()->create([
-            'user_id'=>$user->id,
-            'category_id'=>$category->id,
-            'status_id'=>$statusImplemented->id
-        ]);
-        Idea::factory()->create([
-            'user_id'=>$user->id,
-            'category_id'=>$category->id,
-            'status_id'=>$statusConsidering->id
-        ]);
-        Idea::factory()->create([
-            'user_id'=>$user->id,
-            'category_id'=>$category->id,
-            'status_id'=>$statusClosed->id
-        ]);
-        Idea::factory()->create([
-            'user_id'=>$user->id,
-            'category_id'=>$category->id,
-            'status_id'=>$statusOpen->id
-        ]);
-        Idea::factory()->create([
-            'user_id'=>$user->id,
-            'category_id'=>$category->id,
-            'status_id'=>$statusImplemented->id
-        ]);
-        Idea::factory()->create([
-            'user_id'=>$user->id,
-            'category_id'=>$category->id,
-            'status_id'=>$statusImplemented->id
-        ]);
-        Idea::factory()->create([
-            'user_id'=>$user->id,
-            'category_id'=>$category->id,
-            'status_id'=>$statusClosed->id
-        ]);
-        Idea::factory()->create([
-            'user_id'=>$user->id,
-            'category_id'=>$category->id,
-            'status_id'=>$statusOpen->id
-        ]);
-        Idea::factory()->create([
-            'user_id'=>$user->id,
-            'category_id'=>$category->id,
-            'status_id'=>$statusConsidering->id
-        ]);
-
 
 
         $this->assertEquals(15,Status::getCount()['all_status']);

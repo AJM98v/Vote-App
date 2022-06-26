@@ -10,7 +10,7 @@
                 <h4 class="text-xl font-semibold ">
                     <a href="#" class="hover:underline">{{$idea->title}}</a>
                 </h4>
-                <div class="text-gray-600 mt-4">{{$idea->description}}</div>
+                <div class="text-gray-600 mt-4">{!! nl2br(e($idea->description)) !!}</div>
                 <div class="flex md:justify-between md:items-center flex-col md:flex-row mt-5 space-y-3 md:space-y-0">
                     <div class="flex items-center text-xs text-gray-400 font-semibold space-x-2">
                         <div class="font-bold text-gray-900 md:block hidden">{{$idea->user->name}}</div>

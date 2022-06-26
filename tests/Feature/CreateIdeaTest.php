@@ -22,9 +22,19 @@ class CreateIdeaTest extends TestCase
      * @test
      */
 
-    public function create_idea_form_shows(): void
+    public function create_idea_form_does_not_shows_when_user_not_Logged_in(): void
     {
         $response = $this->get(route('index'));
+        $response->assertSuccessful();
+
+        $response->assertSee('You Have to Logged in For Adding a Idea');
+
+    }
+
+    public function create_idea_form_shows_when_user_logged_in(): void
+    {
+        $user = User::factory()->create();
+        $response = $this->actingAs($user)->get(route('index'));
         $response->assertSuccessful();
 
         $response->assertSee('Your Idea IS Gold Please Share Us');
@@ -37,9 +47,10 @@ class CreateIdeaTest extends TestCase
      * @test
      *
      */
-    public function livewire_component_create_idea(): void
+    public function livewire_component_create_idea_when_user_logged_in(): void
     {
-        $response = $this->get(route('index'))
+        $user = User::factory()->create();
+        $response = $this->actingAs($user)->get(route('index'))
             ->assertSeeLivewire('create-idea');
 
     }
@@ -73,7 +84,8 @@ class CreateIdeaTest extends TestCase
         $status = Status::factory()->create(['name' => 'Open', 'color' => 'black']);
 
 
-        Livewire::test(CreateIdea::class)
+        Livewire::actingAs($user)
+            ->test(CreateIdea::class)
             ->set('title', 'My Idea')
             ->set('category', $category->id)
             ->set('description', 'Hello World')
@@ -105,7 +117,8 @@ class CreateIdeaTest extends TestCase
         $status = Status::factory()->create(['name' => 'Open', 'color' => 'black']);
 
 
-        Livewire::test(CreateIdea::class)
+        Livewire::actingAs($user)
+            ->test(CreateIdea::class)
             ->set('title', 'My Idea')
             ->set('category', $category->id)
             ->set('description', 'Hello World')
@@ -116,7 +129,7 @@ class CreateIdeaTest extends TestCase
         $this->assertDatabaseHas('ideas',
             [
                 'title' => "My Idea",
-                'slug'=>'my-idea'
+                'slug' => 'my-idea'
             ]);
 
 
@@ -130,7 +143,7 @@ class CreateIdeaTest extends TestCase
         $this->assertDatabaseHas('ideas',
             [
                 'title' => "My Idea",
-                'slug'=>'my-idea-2'
+                'slug' => 'my-idea-2'
             ]);
 
 
